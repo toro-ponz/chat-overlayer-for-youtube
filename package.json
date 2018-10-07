@@ -1,0 +1,24 @@
+{
+  "name": "youtube-live-overlayer",
+  "version": "1.0.0",
+  "devDependencies": {
+    "autoprefixer": "^9.1.1",
+    "local-web-server": "^2.5.6",
+    "node-sass": "^4.9.2",
+    "nodemon": "^1.18.3",
+    "postcss": "^7.0.2",
+    "postcss-cli": "^6.0.0",
+    "hoek": "^4.2.1"
+  },
+  "scripts": {
+    "dev": "yarn run dev-css && yarn run autoprefixer",
+    "prod": "yarn run prod-css && yarn run autoprefixer",
+    "watch": "yarn run watch-css & yarn run watch-autoprefixer",
+    "dev-css": "node-sass --output-style expanded --include-path scss assets/scss/app.scss bin/app.css",
+    "prod-css": "node-sass --output-style compressed --include-path scss assets/scss/app.scss bin/app.css",
+    "watch-css": "nodemon -e scss -x \"yarn run dev-css\"",
+    "autoprefixer": "postcss --use autoprefixer --no-map -o bin/app.css bin/app.css",
+    "watch-autoprefixer": "nodemon -e scss -x \"yarn run autoprefixer \"",
+    "ws": "ws"
+  }
+}

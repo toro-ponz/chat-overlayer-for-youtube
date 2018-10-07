@@ -1,0 +1,63 @@
+#content {
+  position: relative;
+}
+
+#content #chat {
+  background: rgba(0, 0, 0, 0.25);
+  color: white;
+  display: flex;
+  flex-direction: column-reverse;
+  position: absolute;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  margin: 24px 0 0 24px;
+  width: auto;
+  height: auto !important;
+}
+
+#content #chat[collapsed] iframe#chatframe {
+  height: 0 !important;
+  min-height: 0 !important;
+}
+
+#content #chat #show-hide-button ytd-toggle-button-renderer.ytd-live-chat-frame {
+  background-color: transparent !important;
+}
+
+#content #chat #show-hide-button ytd-toggle-button-renderer.ytd-live-chat-frame::before {
+  display: none;
+}
+
+#content #chat #show-hide-button #text {
+  color: white !important;
+}
+
+yt-live-chat-app yt-live-chat-header-renderer {
+  display: none !important;
+}
+
+yt-live-chat-app yt-live-chat-renderer {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+yt-live-chat-app yt-live-chat-item-list-renderer div#item-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+yt-live-chat-app yt-live-chat-text-message-renderer div#content yt-live-chat-author-chip span#author-name {
+  color: lightgray !important;
+}
+
+yt-live-chat-app yt-live-chat-text-message-renderer div#content span#message {
+  color: white !important;
+}
+
+yt-live-chat-app yt-live-chat-text-message-renderer div#menu {
+  background: transparent !important;
+}
+
+yt-live-chat-app yt-live-chat-text-message-renderer div#menu svg {
+  color: white;
+}
