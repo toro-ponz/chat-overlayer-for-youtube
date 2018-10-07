@@ -1,4 +1,4 @@
-yt-live-chat-app {
+yt-live-chat-app.theater-mode {
 
   // コメント上部のヘッダー
   yt-live-chat-header-renderer {
@@ -61,5 +61,10 @@ yt-live-chat-app {
         color: white;
       }
     }
+  }
+
+  // コメント入力欄
+  iron-pages#panel-pages {
+    display: none;
   }
 }

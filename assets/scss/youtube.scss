@@ -3,18 +3,18 @@
   position: relative;
 
   // チャット画面
-  #chat {
+  #chat.theater-mode {
     background: rgba(0, 0, 0, 0.25);
     color: white;
     display: flex;
     flex-direction: column-reverse;
     position: absolute;
-    z-index: 2000;
+    z-index: 10;
     top: 0;
     left: 0;
-    margin: 24px 0 0 24px;
+    margin: 0;
     width: auto;
-    height: auto !important;
+    // height: auto !important;
 
     iframe#chatframe {
       // min-height: 630px;
@@ -32,7 +32,7 @@
     #show-hide-button {
       ytd-toggle-button-renderer.ytd-live-chat-frame {
         background-color: transparent !important;
-        
+
         &::before {
           display: none;
         }
