@@ -1,6 +1,6 @@
 # YouTube Live Overlayer
 
-This extension is YouTube Live chat area overlay stream powered by Web Extensions.
+YouTube Live comment overlayer on stream extension powered by Web Extensions.
 
 ## Support
 
@@ -9,11 +9,11 @@ This extension is YouTube Live chat area overlay stream powered by Web Extension
 
 ## Usage
 
-~~1. Install extensions store.~~  
-~~2. View YouTube Live.~~
+1. ~~Install extensions store.~~  
+2. View YouTube Live.
 
 Not available on extensions store now.  
-If you need this, clone this repository and add extension from local.
+If you need this, clone this repository and add extension from local(bin directory).
 
 ## Contributor
 

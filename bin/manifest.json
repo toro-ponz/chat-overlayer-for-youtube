@@ -1,6 +1,6 @@
 {
   "name": "YouTube Live Overlayer",
-  "description": "YouTube Live Chat Overlay Stream Extension.",
+  "description": "YouTube Live comment overlayer on stream extension.",
   "version": "1.0",
   "content_scripts": [
     {
