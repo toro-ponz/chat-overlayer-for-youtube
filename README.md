@@ -18,3 +18,7 @@ If you need this, clone this repository and add extension from local.
 ## Contributor
 
 * とろゝ [GitHub](https://github.com/toro-ponz) [Twitter](https://twitter.com/toro_ponz) [GitHub Pages](https://toro-ponz.github.io/)
+
+## License
+
+[MIT](LICENSE)
