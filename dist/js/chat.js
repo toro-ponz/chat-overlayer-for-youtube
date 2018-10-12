@@ -94,7 +94,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nvar Chat_1 = __webpack_require__(/*! chat/Chat */ \"./src/ts/chat/Chat.ts\");\r\n// initialize after loaded\r\nwindow.onload = function () {\r\n    // wait DOM generate bt SetTimeout\r\n    // TODO: fix it.\r\n    setTimeout(function () {\r\n        var chat = new Chat_1.Chat();\r\n    }, 2500);\r\n};\r\n\n\n//# sourceURL=webpack:///./src/ts/chat.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nvar Chat_1 = __webpack_require__(/*! chat/Chat */ \"./src/ts/chat/Chat.ts\");\r\n// initialize after loaded\r\nwindow.onload = function () {\r\n    // wait DOM generate by SetTimeout\r\n    // TODO: fix it.\r\n    setTimeout(function () {\r\n        var chat = new Chat_1.Chat();\r\n    }, 2500);\r\n};\r\n\n\n//# sourceURL=webpack:///./src/ts/chat.ts?");
 
 /***/ }),
 

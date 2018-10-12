@@ -94,7 +94,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nvar YouTubeLiveOverlayer_1 = __webpack_require__(/*! app/YouTubeLiveOverlayer */ \"./src/ts/app/YouTubeLiveOverlayer.ts\");\r\n// initialize after loaded\r\nwindow.onload = function () {\r\n    // wait DOM generate bt SetTimeout\r\n    // TODO: fix it.\r\n    setTimeout(function () {\r\n        var youTubeLiveOverlayer = new YouTubeLiveOverlayer_1.YouTubeLiveOverlayer();\r\n    }, 2500);\r\n};\r\n\n\n//# sourceURL=webpack:///./src/ts/app.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nvar YouTubeLiveOverlayer_1 = __webpack_require__(/*! app/YouTubeLiveOverlayer */ \"./src/ts/app/YouTubeLiveOverlayer.ts\");\r\n// initialize after loaded\r\nwindow.onload = function () {\r\n    // wait DOM generate by SetTimeout\r\n    // TODO: fix it.\r\n    setTimeout(function () {\r\n        var youTubeLiveOverlayer = new YouTubeLiveOverlayer_1.YouTubeLiveOverlayer();\r\n    }, 2500);\r\n};\r\n\n\n//# sourceURL=webpack:///./src/ts/app.ts?");
 
 /***/ }),
 
