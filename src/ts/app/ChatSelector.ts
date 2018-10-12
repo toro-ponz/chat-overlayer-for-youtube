@@ -44,9 +44,6 @@ export class ChatSelector extends Selector {
    */
   public changeMode(isOverlayMode: boolean): void {
     this.element.classList.toggle(this.overlayClass, isOverlayMode)
-
-    // TODO: get correct height from player
-    this.setHeight(isOverlayMode ? 750 : 530)
   }
 
   /**

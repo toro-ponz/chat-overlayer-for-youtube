@@ -1,6 +1,7 @@
 import { Cookies } from 'components/Cookies'
 import { ChatSelector } from 'app/ChatSelector';
 import { ChatAppFrameSelector } from 'app/ChatAppFrameSelector'
+import { PlayerSelector } from 'app/PlayerSelector'
 import { PlayerModeSelector } from 'app/PlayerModeSelector'
 
 /**
@@ -45,6 +46,15 @@ export class YouTubeLiveOverlayer {
   private chatAppFrameSelector: ChatAppFrameSelector
 
   /**
+   * player selector instance
+   *
+   * @private
+   * @type {PlayerSelector}
+   * @memberof YouTubeLiveOverlayer
+   */
+  private playerSelector: PlayerSelector
+
+  /**
    * player mode selector instance
    *
    * @private
@@ -63,6 +73,7 @@ export class YouTubeLiveOverlayer {
     this.isOverlayMode = this.cookies.getValue('wide') === '1'
     this.chatSelector = new ChatSelector()
     this.chatAppFrameSelector = new ChatAppFrameSelector()
+    this.playerSelector = new PlayerSelector()
     this.playerModeSelector = new PlayerModeSelector()
 
     this.initialize()
@@ -75,9 +86,12 @@ export class YouTubeLiveOverlayer {
    */
   public initialize(): void {
     this.chatSelector.changeMode(this.isOverlayMode)
+    // this.chatSelector.setHeight(this.playerSelector.height - 30)
+
     this.playerModeSelector.setOnclick(() => {
       this.chatSelector.toggleMode()
       this.chatAppFrameSelector.chatAppSelector.toggleMode()
+      // this.chatSelector.setHeight(this.playerSelector.height - 30)
     })
   }
 }
