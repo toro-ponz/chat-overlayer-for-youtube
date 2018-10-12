@@ -14,20 +14,16 @@
     "dev": "yarn run dev-css && yarn run autoprefixer",
     "prod": "yarn run prod-css && yarn run autoprefixer",
     "watch": "yarn run watch-css & yarn run watch-autoprefixer",
-
     "dev-css": "yarn run dev-css-app && yarn run dev-css-chat",
     "prod-css": "yarn run prod-css-app && yarn run prod-css-chat",
     "watch-css": "nodemon -e scss -x \"yarn run dev-css\"",
-
-    "dev-css-app": "node-sass --output-style expanded --include-path scss assets/scss/app.scss bin/css/app.css",
-    "prod-css-app": "node-sass --output-style compressed --include-path scss assets/scss/app.scss bin/css/app.css",
-    "dev-css-chat": "node-sass --output-style expanded --include-path scss assets/scss/chat.scss bin/css/chat.css",
-    "prod-css-chat": "node-sass --output-style compressed --include-path scss assets/scss/chat.scss bin/css/chat.css",
-
-    "autoprefixer-app": "postcss --use autoprefixer --no-map -o bin/css/app.css bin/css/app.css",
-    "autoprefixer-chat": "postcss --use autoprefixer --no-map -o bin/css/chat.css bin/css/chat.css",
+    "dev-css-app": "node-sass --output-style expanded --include-path scss src/scss/app.scss dist/css/app.css",
+    "prod-css-app": "node-sass --output-style compressed --include-path scss src/scss/app.scss dist/css/app.css",
+    "dev-css-chat": "node-sass --output-style expanded --include-path scss src/scss/chat.scss dist/css/chat.css",
+    "prod-css-chat": "node-sass --output-style compressed --include-path scss src/scss/chat.scss dist/css/chat.css",
+    "autoprefixer-app": "postcss --use autoprefixer --no-map -o dist/css/app.css dist/css/app.css",
+    "autoprefixer-chat": "postcss --use autoprefixer --no-map -o dist/css/chat.css dist/css/chat.css",
     "autoprefixer": "yarn run autoprefixer-app && yarn run autoprefixer-chat",
-
     "watch-autoprefixer": "nodemon -e scss -x \"yarn run autoprefixer\""
   }
 }
