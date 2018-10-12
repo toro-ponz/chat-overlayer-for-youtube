@@ -16,7 +16,7 @@ YouTube Live comment overlayer on stream extension powered by Web Extensions.
 Not available on extensions store now.  
 If you need this, clone this repository and add extension from local(`dist` directory).
 
-## Auther
+## Author
 
 * とろゝ [GitHub](https://github.com/toro-ponz) [Twitter](https://twitter.com/toro_ponz) [GitHub Pages](https://toro-ponz.github.io/)
 
