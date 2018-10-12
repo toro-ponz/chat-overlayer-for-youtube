@@ -9,7 +9,7 @@ This extension is YouTube Live chat area overlay stream powered by Web Extension
 
 ## Usage
 
-~~1. Install extensions store.~~
+~~1. Install extensions store.~~  
 ~~2. View YouTube Live.~~
 
 Not available on extensions store now.  
