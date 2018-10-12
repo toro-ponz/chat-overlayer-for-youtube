@@ -4,26 +4,16 @@
   "version": "1.0",
   "content_scripts": [
     {
-      "css": [
-        "css/app.css"
-      ],
-      "js": [
-        "js/jquery.min.js",
-        "js/app.js"
-      ],
+      "css": ["css/app.css"],
+      "js": ["js/app.js"],
       "matches": [
         "https://www.youtube.com/watch*"
       ],
       "run_at": "document_end"
     },
     {
-      "css": [
-        "css/chat.css"
-      ],
-      "js": [
-        "js/jquery.min.js",
-        "js/chat.js"
-      ],
+      "css": ["css/chat.css"],
+      "js": ["js/chat.js"],
       "matches": [
         "https://www.youtube.com/live_chat*",
         "https://www.youtube.com/live_chat_replay*"
