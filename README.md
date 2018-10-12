@@ -11,6 +11,7 @@ YouTube Live comment overlayer on stream extension powered by Web Extensions.
 
 1. ~~Install extensions store.~~  
 2. View YouTube Live.
+3. Change player mode to theater.
 
 Not available on extensions store now.  
 If you need this, clone this repository and add extension from local(bin directory).
