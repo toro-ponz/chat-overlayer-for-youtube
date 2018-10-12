@@ -33,6 +33,8 @@ export class ChatSelector extends Selector {
   public constructor() {
     super('ytd-live-chat-frame')
     this.playerSelector = new PlayerSelector()
+
+    this.initialize()
   }
 
   /**
@@ -45,6 +47,18 @@ export class ChatSelector extends Selector {
    */
   private get isOverlayMode(): boolean {
     return this.element.classList.contains(this.overlayClass)
+  }
+
+  /**
+   * initialize
+   *
+   * @private
+   * @memberof ChatSelector
+   */
+  private initialize(): void {
+    window.onresize = () => {
+      this.setHeight()
+    }
   }
 
   /**
