@@ -1,3 +1,4 @@
+import { PlayerSelector } from 'app/PlayerSelector'
 import { Selector } from 'components/Selector'
 
 /**
@@ -16,12 +17,22 @@ export class ChatSelector extends Selector {
   private overlayClass: string = 'overlay-mode'
 
   /**
+   * player selector instance
+   *
+   * @private
+   * @type {PlayerSelector}
+   * @memberof YouTubeLiveOverlayer
+   */
+  private playerSelector: PlayerSelector
+
+  /**
    * Creates an instance of ChatSelector.
    *
    * @memberof ChatSelector
    */
   public constructor() {
     super('ytd-live-chat-frame')
+    this.playerSelector = new PlayerSelector()
   }
 
   /**
@@ -44,6 +55,7 @@ export class ChatSelector extends Selector {
    */
   public changeMode(isOverlayMode: boolean): void {
     this.element.classList.toggle(this.overlayClass, isOverlayMode)
+    this.setHeight()
   }
 
   /**
@@ -56,12 +68,21 @@ export class ChatSelector extends Selector {
   }
 
   /**
-   * set chat window height
+   * set height calculate from player height
    *
-   * @param {number} height
    * @memberof ChatSelector
    */
-  public setHeight(height: number): void {
-    this.element.setAttribute('style', `height: ${height.toString()}px;`)
+  public setHeight(): void {
+    // wait change mode by SetTimeout
+    // TODO: fix it.
+    setTimeout(() => {
+      if (this.isOverlayMode) {
+        const height = this.playerSelector.height - 30
+        this.element.setAttribute('style', `height: ${height.toString()}px;`)
+        return
+      }
+
+      this.element.removeAttribute('style')
+    }, 500)
   }
 }
