@@ -1,0 +1,33 @@
+#content {
+  position: relative;
+}
+
+#content #chat.overlay-mode {
+  background: rgba(0, 0, 0, 0.25);
+  color: white;
+  display: flex;
+  flex-direction: column-reverse;
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  margin: 0;
+  width: auto;
+}
+
+#content #chat.overlay-mode[collapsed] iframe#chatframe {
+  height: 0 !important;
+  min-height: 0 !important;
+}
+
+#content #chat.overlay-mode #show-hide-button ytd-toggle-button-renderer.ytd-live-chat-frame {
+  background-color: transparent !important;
+}
+
+#content #chat.overlay-mode #show-hide-button ytd-toggle-button-renderer.ytd-live-chat-frame::before {
+  display: none;
+}
+
+#content #chat.overlay-mode #show-hide-button ytd-toggle-button-renderer.ytd-live-chat-frame #text {
+  color: white !important;
+}

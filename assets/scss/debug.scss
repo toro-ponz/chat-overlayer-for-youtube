@@ -1,0 +1,39 @@
+// chat app on overlay mode
+yt-live-chat-app.overlay-mode {
+
+  // individual comment
+  yt-live-chat-text-message-renderer {
+
+    // user icon
+    yt-img-shadow {
+      min-width: 24px;
+      min-height: 24px;
+      background: lightblue !important;
+      border-radius: 50%;
+
+      // icon img
+      img {
+        display: none !important;
+      }
+    }
+
+    // comment user name
+    yt-live-chat-author-chip span#author-name {
+      background: lightgray !important;
+    }
+
+    // comment message
+    span#message {
+      background: white !important;
+    }
+  }
+}
+
+// video container
+.html5-video-container {
+
+  // video
+  .video-stream {
+    display: none !important;
+  }
+}

@@ -1,2 +1,47 @@
-@import 'youtube.scss';
-@import 'chatframe.scss';
+// parent
+#content {
+  position: relative;
+
+  // chat window on overlay mode
+  #chat.overlay-mode {
+    background: rgba(0, 0, 0, 0.25);
+    color: white;
+    display: flex;
+    flex-direction: column-reverse;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    margin: 0;
+    width: auto;
+
+    // chat collapsed
+    &[collapsed] {
+
+      // chat app iframe
+      iframe#chatframe {
+        height: 0 !important;
+        min-height: 0 !important;
+      }
+    }
+
+    // chat show/hide button
+    #show-hide-button {
+
+      // transparent button background
+      ytd-toggle-button-renderer.ytd-live-chat-frame {
+        background-color: transparent !important;
+
+        // hide top border
+        &::before {
+          display: none;
+        }
+
+        // button text color
+        #text {
+          color: white !important;
+        }
+      }
+    }
+  }
+}

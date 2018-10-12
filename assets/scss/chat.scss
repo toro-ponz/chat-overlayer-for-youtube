@@ -1,0 +1,68 @@
+// chat app on overlay mode
+yt-live-chat-app.overlay-mode {
+
+  // chat header
+  yt-live-chat-header-renderer {
+    display: none !important;
+  }
+
+  // transparent chat background
+  yt-live-chat-renderer {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+
+  yt-live-chat-item-list-renderer {
+
+    // scrollbar
+    div#item-scroller {
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+
+  // individual comment
+  yt-live-chat-text-message-renderer {
+
+    // comment user name
+    yt-live-chat-author-chip span#author-name {
+      color: lightgray !important;
+    }
+
+    // comment message
+    span#message {
+      color: white !important;
+    }
+
+    // comment menu
+    div#menu {
+      background: transparent !important;
+
+      // button icon
+      svg {
+        color: white;
+      }
+    }
+  }
+
+  // chat input panel
+  iron-pages {
+    &#panel-pages {
+      display: none;
+    }
+  }
+}
+
+// hack Firefox
+@-moz-document url-prefix() {
+  yt-live-chat-item-list-renderer {
+
+    // scrollbar
+    div#item-scroller {
+      margin-right: -17px !important;
+      overflow-y: scroll;
+    }
+  }
+}
