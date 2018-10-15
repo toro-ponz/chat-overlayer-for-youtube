@@ -2,9 +2,23 @@ import { Chat } from 'chat/Chat'
 
 // initialize after loaded
 window.onload = () => {
-  // wait DOM generate by SetTimeout
-  // TODO: fix it.
-  setTimeout(() => {
-    const chat = new Chat()
-  }, 2500)
+  let count = 0
+
+  // wait generate DOM
+  let interval = setInterval(() => {
+    count++
+
+    try {
+      new Chat()
+    } catch (error) {
+      // timeout 10000ms
+      if (count < 200) {
+        return
+      }
+
+      throw new Error('DOM not found in 20sec.')
+    }
+
+    clearInterval(interval)
+  }, 50);
 }

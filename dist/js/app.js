@@ -105,7 +105,7 @@ eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nvar YouTubeLiveOverlayer_1 = __webpack_require__(/*! app/YouTubeLiveOverlayer */ \"./src/ts/app/YouTubeLiveOverlayer.ts\");\r\n// initialize after loaded\r\nwindow.onload = function () {\r\n    // wait DOM generate by SetTimeout\r\n    // TODO: fix it.\r\n    setTimeout(function () {\r\n        var youTubeLiveOverlayer = new YouTubeLiveOverlayer_1.YouTubeLiveOverlayer();\r\n    }, 2500);\r\n};\r\n\n\n//# sourceURL=webpack:///./src/ts/app.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nvar YouTubeLiveOverlayer_1 = __webpack_require__(/*! app/YouTubeLiveOverlayer */ \"./src/ts/app/YouTubeLiveOverlayer.ts\");\r\n// initialize after loaded\r\nwindow.onload = function () {\r\n    var count = 0;\r\n    // wait generate DOM\r\n    var interval = setInterval(function () {\r\n        count++;\r\n        try {\r\n            new YouTubeLiveOverlayer_1.YouTubeLiveOverlayer();\r\n        }\r\n        catch (error) {\r\n            // timeout 10000ms\r\n            if (count < 200) {\r\n                return;\r\n            }\r\n            throw new Error('DOM not found in 20sec.');\r\n        }\r\n        clearInterval(interval);\r\n    }, 50);\r\n};\r\n\n\n//# sourceURL=webpack:///./src/ts/app.ts?");
 
 /***/ }),
 
