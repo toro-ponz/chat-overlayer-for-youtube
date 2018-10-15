@@ -105,7 +105,7 @@ eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nvar Chat_1 = __webpack_require__(/*! chat/Chat */ \"./src/ts/chat/Chat.ts\");\r\n// initialize after loaded\r\nwindow.onload = function () {\r\n    var count = 0;\r\n    // wait generate DOM\r\n    var interval = setInterval(function () {\r\n        count++;\r\n        try {\r\n            new Chat_1.Chat();\r\n        }\r\n        catch (error) {\r\n            // timeout 10000ms\r\n            if (count < 200) {\r\n                return;\r\n            }\r\n            throw new Error('DOM not found in 20sec.');\r\n        }\r\n        clearInterval(interval);\r\n    }, 50);\r\n};\r\n\n\n//# sourceURL=webpack:///./src/ts/chat.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nvar Chat_1 = __webpack_require__(/*! chat/Chat */ \"./src/ts/chat/Chat.ts\");\r\n// initialize after loaded\r\nwindow.onload = function () {\r\n    new Chat_1.Chat();\r\n};\r\n\n\n//# sourceURL=webpack:///./src/ts/chat.ts?");
 
 /***/ }),
 

@@ -2,23 +2,24 @@ import { YouTubeLiveOverlayer } from 'app/YouTubeLiveOverlayer'
 
 // initialize after loaded
 window.onload = () => {
+  const instance = YouTubeLiveOverlayer.tryNew()
   let count = 0
+
+  if (instance !== null) {
+    return
+  }
 
   // wait generate DOM
   let interval = setInterval(() => {
-    count++
-
     try {
-      new YouTubeLiveOverlayer()
-    } catch (error) {
-      // timeout 10000ms
-      if (count < 200) {
-        return
-      }
-
-      throw new Error('DOM not found in 20sec.')
+      YouTubeLiveOverlayer.tryNewInterval(interval)
+      return
+    } catch(error) {
+      count++
     }
 
-    clearInterval(interval)
-  }, 50);
+    if (count >= 200) {
+      throw new Error('DOM not found in 10sec.')
+    }
+  }, 50)
 }
