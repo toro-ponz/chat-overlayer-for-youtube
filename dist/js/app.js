@@ -81,10 +81,21 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/ts/app.ts");
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "./src/scss/app.scss":
+/*!***************************!*\
+  !*** ./src/scss/app.scss ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/scss/app.scss?");
+
+/***/ }),
 
 /***/ "./src/ts/app.ts":
 /*!***********************!*\
@@ -191,6 +202,17 @@ eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n/*
 
 "use strict";
 eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n/**\r\n * DOM selector abstract class\r\n *\r\n * @export\r\n * @class Selector\r\n */\r\nvar Selector = /** @class */ (function () {\r\n    /**\r\n     * Creates an instance of Selector.\r\n     *\r\n     * @param {string} selector\r\n     * @memberof Selector\r\n     */\r\n    function Selector(query) {\r\n        this.query = query;\r\n    }\r\n    Object.defineProperty(Selector.prototype, \"element\", {\r\n        /**\r\n         * get element with query selector\r\n         *\r\n         * @readonly\r\n         * @type {Element}\r\n         * @memberof Selector\r\n         */\r\n        get: function () {\r\n            var element = document.querySelector(this.query);\r\n            if (element === null) {\r\n                throw new Error('DOM not found with selector.');\r\n            }\r\n            return element;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    Object.defineProperty(Selector.prototype, \"htmlElement\", {\r\n        /**\r\n         * get html element with query selector\r\n         *\r\n         * @readonly\r\n         * @type {HTMLElement}\r\n         * @memberof Selector\r\n         */\r\n        get: function () {\r\n            var htmlElement = this.element;\r\n            if (htmlElement === null) {\r\n                throw new Error('DOM is not HTMLElement.');\r\n            }\r\n            return htmlElement;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    /**\r\n     * DOM generated or not found\r\n     *\r\n     * @returns {boolean}\r\n     * @memberof Selector\r\n     */\r\n    Selector.prototype.isGenerated = function () {\r\n        var element = document.querySelector(this.query);\r\n        return element !== null;\r\n    };\r\n    return Selector;\r\n}());\r\nexports.Selector = Selector;\r\n\n\n//# sourceURL=webpack:///./src/ts/components/Selector.ts?");
+
+/***/ }),
+
+/***/ 0:
+/*!*************************************************!*\
+  !*** multi ./src/ts/app.ts ./src/scss/app.scss ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("__webpack_require__(/*! ./src/ts/app.ts */\"./src/ts/app.ts\");\nmodule.exports = __webpack_require__(/*! ./src/scss/app.scss */\"./src/scss/app.scss\");\n\n\n//# sourceURL=webpack:///multi_./src/ts/app.ts_./src/scss/app.scss?");
 
 /***/ })
 

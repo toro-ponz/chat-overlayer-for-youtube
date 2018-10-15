@@ -4,33 +4,20 @@
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^9.1.1",
-    "local-web-server": "^2.5.6",
-    "node-sass": "^4.9.2",
-    "nodemon": "^1.18.3",
-    "postcss": "^7.0.2",
-    "postcss-cli": "^6.0.0",
+    "css-loader": "^1.0.0",
+    "cssnano": "^4.1.4",
+    "mini-css-extract-plugin": "^0.4.4",
+    "node-sass": "^4.9.4",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
     "ts-loader": "^5.2.1",
     "typescript": "^3.1.3",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2"
   },
   "scripts": {
-    "build-dev": "webpack --mode=development",
-    "build-prod": "webpack --mode=production",
-    "build-watch": "webpack --progress --colors --watch --mode=development",
-    "dev": "yarn run dev-css && yarn run autoprefixer",
-    "prod": "yarn run prod-css && yarn run autoprefixer",
-    "watch": "yarn run watch-css & yarn run watch-autoprefixer",
-    "dev-css": "yarn run dev-css-app && yarn run dev-css-chat",
-    "prod-css": "yarn run prod-css-app && yarn run prod-css-chat",
-    "watch-css": "nodemon -e scss -x \"yarn run dev-css\"",
-    "dev-css-app": "node-sass --output-style expanded --include-path scss src/scss/app.scss dist/css/app.css",
-    "prod-css-app": "node-sass --output-style compressed --include-path scss src/scss/app.scss dist/css/app.css",
-    "dev-css-chat": "node-sass --output-style expanded --include-path scss src/scss/chat.scss dist/css/chat.css",
-    "prod-css-chat": "node-sass --output-style compressed --include-path scss src/scss/chat.scss dist/css/chat.css",
-    "autoprefixer-app": "postcss --use autoprefixer --no-map -o dist/css/app.css dist/css/app.css",
-    "autoprefixer-chat": "postcss --use autoprefixer --no-map -o dist/css/chat.css dist/css/chat.css",
-    "autoprefixer": "yarn run autoprefixer-app && yarn run autoprefixer-chat",
-    "watch-autoprefixer": "nodemon -e scss -x \"yarn run autoprefixer\""
+    "development": "webpack --mode=development",
+    "production": "webpack --mode=production",
+    "watch": "webpack --progress --watch --mode=development"
   }
 }
