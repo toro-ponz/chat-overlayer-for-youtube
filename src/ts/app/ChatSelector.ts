@@ -93,7 +93,6 @@ export class ChatSelector extends Selector {
       if (this.isOverlayMode) {
         const height = this.playerSelector.height - 45
         const style = `
-          min-height: ${height.toString()}px;
           max-height: ${height.toString()}px;
           height: ${height.toString()}px;
         `
