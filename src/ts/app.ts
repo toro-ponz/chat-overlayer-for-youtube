@@ -2,12 +2,7 @@ import { YouTubeLiveOverlayer } from 'app/YouTubeLiveOverlayer'
 
 // initialize after loaded
 window.onload = () => {
-  const instance = YouTubeLiveOverlayer.tryNew()
   let count = 0
-
-  if (instance !== null) {
-    return
-  }
 
   // wait generate DOM
   let interval = setInterval(() => {
