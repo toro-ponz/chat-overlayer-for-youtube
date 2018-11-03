@@ -19,7 +19,7 @@ window.onload = () => {
     }
 
     if (count >= 200) {
-      throw new Error('DOM not found in 10sec.')
+      clearInterval(interval)
     }
   }, 50)
 }
