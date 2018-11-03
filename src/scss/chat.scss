@@ -41,6 +41,16 @@ yt-live-chat-app.overlay-mode {
   // individual comment
   yt-live-chat-text-message-renderer {
 
+    // streamer comment
+    &[is-highlighted] {
+      background: transparent !important;
+
+      // comment user name
+      yt-live-chat-author-chip span#author-name {
+        color: black !important;
+      }
+    }
+
     // comment user name
     yt-live-chat-author-chip span#author-name {
       color: lightgray !important;
