@@ -91,8 +91,13 @@ export class ChatSelector extends Selector {
     // TODO: fix it.
     setTimeout(() => {
       if (this.isOverlayMode) {
-        const height = this.playerSelector.height - 30
-        this.element.setAttribute('style', `height: ${height.toString()}px;`)
+        const height = this.playerSelector.height - 45
+        const style = `
+          min-height: ${height.toString()}px;
+          max-height: ${height.toString()}px;
+          height: ${height.toString()}px;
+        `
+        this.element.setAttribute('style', style)
         return
       }
 

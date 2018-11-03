@@ -12,6 +12,21 @@ yt-live-chat-app.overlay-mode {
     background-color: transparent !important;
   }
 
+  // superchat
+  yt-live-chat-ticker-renderer {
+
+    #items.yt-live-chat-ticker-renderer {
+      padding: 0 24px 0px 24px !important;
+    }
+
+    // scroll arrow
+    #left-arrow-container,
+    #right-arrow-container {
+      background: transparent !important;
+    }
+  }
+
+  // chat list
   yt-live-chat-item-list-renderer {
 
     // scrollbar
