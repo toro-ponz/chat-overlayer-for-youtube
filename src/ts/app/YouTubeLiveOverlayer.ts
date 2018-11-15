@@ -2,6 +2,7 @@ import { Cookies } from 'components/Cookies'
 import { ChatSelector } from 'app/ChatSelector';
 import { ChatAppFrameSelector } from 'app/ChatAppFrameSelector'
 import { PlayerModeSelector } from 'app/PlayerModeSelector'
+import { OfflineStateBarSelector } from 'app/OfflineStateBarSelector'
 
 /**
  * @export
@@ -54,6 +55,15 @@ export class YouTubeLiveOverlayer {
   private playerModeSelector: PlayerModeSelector
 
   /**
+   * offline state bar selector instance
+   *
+   * @private
+   * @type {OfflineStateBarSelector}
+   * @memberof YouTubeLiveOverlayer
+   */
+  private offlineStateBarSelector: OfflineStateBarSelector
+
+  /**
    * Creates an instance of YouTubeLiveOverlayer.
    *
    * @memberof YouTubeLiveOverlayer
@@ -64,6 +74,7 @@ export class YouTubeLiveOverlayer {
     this.chatSelector = new ChatSelector()
     this.chatAppFrameSelector = new ChatAppFrameSelector()
     this.playerModeSelector = new PlayerModeSelector()
+    this.offlineStateBarSelector = new OfflineStateBarSelector()
 
     this.initialize()
   }
@@ -75,9 +86,11 @@ export class YouTubeLiveOverlayer {
    */
   public initialize(): void {
     this.chatSelector.changeMode(this.isOverlayMode)
+    this.offlineStateBarSelector.changeMode(this.isOverlayMode)
 
     this.playerModeSelector.setOnclick(() => {
       this.chatSelector.toggleMode()
+      this.offlineStateBarSelector.toggleMode()
       this.chatAppFrameSelector.chatAppSelector.toggleMode()
     })
   }
