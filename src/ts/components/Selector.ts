@@ -35,7 +35,7 @@ export abstract class Selector {
     const element = document.querySelector(this.query)
 
     if (element === null) {
-      throw new Error('DOM not found with selector.');
+      throw new Error('DOM not found with selector.' + this.query);
     }
 
     return element

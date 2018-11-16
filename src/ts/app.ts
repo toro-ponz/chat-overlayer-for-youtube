@@ -2,19 +2,34 @@ import { YouTubeLiveOverlayer } from 'app/YouTubeLiveOverlayer'
 
 // initialize after loaded
 window.onload = () => {
-  let count = 0
+  // extention instance
+  let app: YouTubeLiveOverlayer | null = null
 
-  // wait generate DOM
-  let interval = setInterval(() => {
-    try {
-      YouTubeLiveOverlayer.tryNewInterval(interval)
+  // observer
+  const observer: MutationObserver = new MutationObserver(() => {
+    // #chat is not found
+    if (document.getElementById('chat') === null) {
+      // release old instance
+      app = null
       return
-    } catch(error) {
-      count++
     }
 
-    if (count >= 200) {
-      clearInterval(interval)
+    // #chat is not mounted
+    if (app === null) {
+      // mount extention by interval
+      const interval = setInterval(() => {
+        if (app !== null) {
+          clearInterval(interval)
+        }
+
+        app = YouTubeLiveOverlayer.tryNew()
+      }, 50)
     }
-  }, 50)
+  });
+
+  // observe #chat through document body
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
 }
