@@ -23,6 +23,10 @@ export class Cookies {
     this.cookies = this.getCookies()
   }
 
+  public get isWide() {
+    return this.getValue('wide') === '1'
+  }
+
   /**
    * get cookie with name
    *

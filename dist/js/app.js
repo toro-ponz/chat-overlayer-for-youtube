@@ -1,1 +1,207 @@
-!function(e){var t={};function o(n){if(t[n])return t[n].exports;var r=t[n]={i:n,l:!1,exports:{}};return e[n].call(r.exports,r,r.exports,o),r.l=!0,r.exports}o.m=e,o.c=t,o.d=function(e,t,n){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},o.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,"a",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p="",o(o.s=3)}([function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=function(){function e(e){this.query=e}return Object.defineProperty(e.prototype,"element",{get:function(){var e=document.querySelector(this.query);if(null===e)throw new Error("DOM not found with selector."+this.query);return e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"htmlElement",{get:function(){var e=this.element;if(null===e)throw new Error("DOM is not HTMLElement.");return e},enumerable:!0,configurable:!0}),e.prototype.isGenerated=function(){return null!==document.querySelector(this.query)},e}();t.Selector=n},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=function(){function e(){this.cookies=this.getCookies()}return e.prototype.getValue=function(e){var t=this.cookies.filter(function(t){return t.key===e})[0];return t?t.value:""},e.prototype.update=function(){this.cookies=this.getCookies()},e.prototype.getCookies=function(){return document.cookie.split("; ").map(function(e){return{key:e.split("=")[0],value:e.split("=")[1]}})},e}();t.Cookies=n},function(e,t,o){"use strict";var n=this&&this.__extends||function(){var e=function(t,o){return(e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var o in t)t.hasOwnProperty(o)&&(e[o]=t[o])})(t,o)};return function(t,o){function n(){this.constructor=t}e(t,o),t.prototype=null===o?Object.create(o):(n.prototype=o.prototype,new n)}}();Object.defineProperty(t,"__esModule",{value:!0});var r=function(e){function t(t){void 0===t&&(t=null);var o=e.call(this,"yt-live-chat-app")||this;return o.overlayClass="overlay-mode",o.document=t,o}return n(t,e),Object.defineProperty(t.prototype,"element",{get:function(){var e=(this.document?this.document:document).querySelector(this.query);if(null===e)throw new Error("DOM not found with selector.");return e},enumerable:!0,configurable:!0}),Object.defineProperty(t.prototype,"isOverlayMode",{get:function(){return this.element.classList.contains(this.overlayClass)},enumerable:!0,configurable:!0}),t.prototype.changeMode=function(e){this.element.classList.toggle(this.overlayClass,e)},t.prototype.toggleMode=function(){this.changeMode(!this.isOverlayMode)},t}(o(0).Selector);t.ChatAppSelector=r},function(e,t,o){o(4),e.exports=o(11)},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=o(5);window.onload=function(){var e=null;new MutationObserver(function(){if(null!==document.getElementById("chat")){if(null===e)var t=setInterval(function(){null!==e&&clearInterval(t),e=n.YouTubeLiveOverlayer.tryNew()},50)}else e=null}).observe(document.body,{childList:!0,subtree:!0})}},function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=o(1),r=o(6),i=o(8),c=o(9),u=o(10),l=function(){function e(){this.cookies=new n.Cookies,this.isOverlayMode="1"===this.cookies.getValue("wide"),this.chatSelector=new r.ChatSelector,this.chatAppFrameSelector=new i.ChatAppFrameSelector,this.playerModeSelector=new c.PlayerModeSelector,this.offlineStateBarSelector=new u.OfflineStateBarSelector,this.initialize()}return e.prototype.initialize=function(){var e=this;this.chatSelector.changeMode(this.isOverlayMode),this.offlineStateBarSelector.changeMode(this.isOverlayMode),this.playerModeSelector.setOnclick(function(){e.chatSelector.toggleMode(),e.offlineStateBarSelector.toggleMode(),e.chatAppFrameSelector.chatAppSelector.toggleMode()})},e.tryNew=function(){try{return new e}catch(e){return null}},e}();t.YouTubeLiveOverlayer=l},function(e,t,o){"use strict";var n=this&&this.__extends||function(){var e=function(t,o){return(e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var o in t)t.hasOwnProperty(o)&&(e[o]=t[o])})(t,o)};return function(t,o){function n(){this.constructor=t}e(t,o),t.prototype=null===o?Object.create(o):(n.prototype=o.prototype,new n)}}();Object.defineProperty(t,"__esModule",{value:!0});var r=o(7),i=function(e){function t(){var t=e.call(this,"ytd-live-chat-frame")||this;return t.overlayClass="overlay-mode",t.playerSelector=new r.PlayerSelector,t.initialize(),t}return n(t,e),Object.defineProperty(t.prototype,"isOverlayMode",{get:function(){return this.element.classList.contains(this.overlayClass)},enumerable:!0,configurable:!0}),t.prototype.initialize=function(){var e=this;window.onresize=function(){e.setHeight()}},t.prototype.changeMode=function(e){this.element.classList.toggle(this.overlayClass,e),this.setHeight()},t.prototype.toggleMode=function(){this.changeMode(!this.isOverlayMode)},t.prototype.setHeight=function(){var e=this;setTimeout(function(){if(e.isOverlayMode){var t=e.playerSelector.height-45,o="\n          max-height: "+t.toString()+"px;\n          height: "+t.toString()+"px;\n        ";e.element.setAttribute("style",o)}else e.element.removeAttribute("style")},500)},t}(o(0).Selector);t.ChatSelector=i},function(e,t,o){"use strict";var n=this&&this.__extends||function(){var e=function(t,o){return(e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var o in t)t.hasOwnProperty(o)&&(e[o]=t[o])})(t,o)};return function(t,o){function n(){this.constructor=t}e(t,o),t.prototype=null===o?Object.create(o):(n.prototype=o.prototype,new n)}}();Object.defineProperty(t,"__esModule",{value:!0});var r=function(e){function t(){return e.call(this,".html5-video-player")||this}return n(t,e),Object.defineProperty(t.prototype,"height",{get:function(){return this.htmlElement.clientHeight},enumerable:!0,configurable:!0}),t}(o(0).Selector);t.PlayerSelector=r},function(e,t,o){"use strict";var n=this&&this.__extends||function(){var e=function(t,o){return(e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var o in t)t.hasOwnProperty(o)&&(e[o]=t[o])})(t,o)};return function(t,o){function n(){this.constructor=t}e(t,o),t.prototype=null===o?Object.create(o):(n.prototype=o.prototype,new n)}}();Object.defineProperty(t,"__esModule",{value:!0});var r=o(0),i=o(2),c=function(e){function t(){return e.call(this,"iframe#chatframe")||this}return n(t,e),Object.defineProperty(t.prototype,"element",{get:function(){var e=document.querySelector(this.query);if(null===e)throw new Error("DOM is not HTMLframeElement");return e},enumerable:!0,configurable:!0}),Object.defineProperty(t.prototype,"innerDocument",{get:function(){var e=this.element;if(null===e.contentWindow||null===e.contentWindow.document)throw new Error("document not found.");return e.contentWindow.document},enumerable:!0,configurable:!0}),Object.defineProperty(t.prototype,"chatAppSelector",{get:function(){return new i.ChatAppSelector(this.innerDocument)},enumerable:!0,configurable:!0}),t}(r.Selector);t.ChatAppFrameSelector=c},function(e,t,o){"use strict";var n=this&&this.__extends||function(){var e=function(t,o){return(e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var o in t)t.hasOwnProperty(o)&&(e[o]=t[o])})(t,o)};return function(t,o){function n(){this.constructor=t}e(t,o),t.prototype=null===o?Object.create(o):(n.prototype=o.prototype,new n)}}();Object.defineProperty(t,"__esModule",{value:!0});var r=function(e){function t(){return e.call(this,".ytp-size-button")||this}return n(t,e),t.prototype.setOnclick=function(e){var t=this.element;return null!==t&&(t.onclick=e,!0)},t}(o(0).Selector);t.PlayerModeSelector=r},function(e,t,o){"use strict";var n=this&&this.__extends||function(){var e=function(t,o){return(e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var o in t)t.hasOwnProperty(o)&&(e[o]=t[o])})(t,o)};return function(t,o){function n(){this.constructor=t}e(t,o),t.prototype=null===o?Object.create(o):(n.prototype=o.prototype,new n)}}();Object.defineProperty(t,"__esModule",{value:!0});var r=function(e){function t(){var t=e.call(this,".ytp-offline-slate-bar")||this;return t.overlayClass="overlay-mode",t}return n(t,e),Object.defineProperty(t.prototype,"isOverlayMode",{get:function(){return this.element.classList.contains(this.overlayClass)},enumerable:!0,configurable:!0}),t.prototype.changeMode=function(e){this.element.classList.toggle(this.overlayClass,e)},t.prototype.toggleMode=function(){this.changeMode(!this.isOverlayMode)},t}(o(0).Selector);t.OfflineStateBarSelector=r},function(e,t,o){}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./src/scss/app.scss":
+/*!***************************!*\
+  !*** ./src/scss/app.scss ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/scss/app.scss?");
+
+/***/ }),
+
+/***/ "./src/ts/app.ts":
+/*!***********************!*\
+  !*** ./src/ts/app.ts ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nvar YouTubeLiveOverlayer_1 = __webpack_require__(/*! app/YouTubeLiveOverlayer */ \"./src/ts/app/YouTubeLiveOverlayer.ts\");\r\n// initialize after loaded\r\nwindow.onload = function () {\r\n    // extention instance\r\n    var app = null;\r\n    // observer\r\n    var observer = new MutationObserver(function () {\r\n        // #chat is not found\r\n        if (document.getElementById('chat') === null) {\r\n            // release old instance\r\n            app = null;\r\n            return;\r\n        }\r\n        // #chat is not mounted\r\n        if (app === null) {\r\n            // mount extention by interval\r\n            var interval_1 = setInterval(function () {\r\n                if (app !== null) {\r\n                    clearInterval(interval_1);\r\n                }\r\n                app = YouTubeLiveOverlayer_1.YouTubeLiveOverlayer.tryNew();\r\n            }, 50);\r\n        }\r\n    });\r\n    // observe #chat through document body\r\n    observer.observe(document.body, {\r\n        childList: true,\r\n        subtree: true\r\n    });\r\n};\r\n\n\n//# sourceURL=webpack:///./src/ts/app.ts?");
+
+/***/ }),
+
+/***/ "./src/ts/app/ChatAppFrameSelector.ts":
+/*!********************************************!*\
+  !*** ./src/ts/app/ChatAppFrameSelector.ts ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nvar __extends = (this && this.__extends) || (function () {\r\n    var extendStatics = function (d, b) {\r\n        extendStatics = Object.setPrototypeOf ||\r\n            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\r\n            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };\r\n        return extendStatics(d, b);\r\n    }\r\n    return function (d, b) {\r\n        extendStatics(d, b);\r\n        function __() { this.constructor = d; }\r\n        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n    };\r\n})();\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nvar Selector_1 = __webpack_require__(/*! components/Selector */ \"./src/ts/components/Selector.ts\");\r\n/**\r\n * @export\r\n * @class ChatAppFrameSelector\r\n * @extends {Selector}\r\n */\r\nvar ChatAppFrameSelector = /** @class */ (function (_super) {\r\n    __extends(ChatAppFrameSelector, _super);\r\n    /**\r\n     * Creates an instance of ChatAppFrameSelector.\r\n     *\r\n     * @memberof ChatAppFrameSelector\r\n     */\r\n    function ChatAppFrameSelector() {\r\n        return _super.call(this, 'iframe#chatframe') || this;\r\n    }\r\n    /**\r\n     * change overlay mode\r\n     *\r\n     * @param {string} overlayClass\r\n     * @param {boolean} isOverlayMode\r\n     * @memberof ChatAppFrameSelector\r\n     */\r\n    ChatAppFrameSelector.prototype.changeMode = function (overlayClass, isOverlayMode) {\r\n        this.innerDocument.body.classList.toggle(overlayClass, isOverlayMode);\r\n    };\r\n    Object.defineProperty(ChatAppFrameSelector.prototype, \"iframe\", {\r\n        /**\r\n         * get iframe element\r\n         *\r\n         * @private\r\n         * @readonly\r\n         * @type {HTMLIFrameElement}\r\n         * @memberof ChatAppFrameSelector\r\n         */\r\n        get: function () {\r\n            var iframe = document.querySelector(this.query);\r\n            if (iframe === null) {\r\n                throw new Error('DOM is not HTMLframeElement');\r\n            }\r\n            return iframe;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    Object.defineProperty(ChatAppFrameSelector.prototype, \"innerDocument\", {\r\n        /**\r\n         * get document inner iframe\r\n         *\r\n         * @private\r\n         * @readonly\r\n         * @type {Document}\r\n         * @memberof ChatAppFrameSelector\r\n         */\r\n        get: function () {\r\n            var frame = this.iframe;\r\n            if (frame.contentWindow === null || frame.contentWindow.document === null) {\r\n                throw new Error('document not found.');\r\n            }\r\n            return frame.contentWindow.document;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    return ChatAppFrameSelector;\r\n}(Selector_1.Selector));\r\nexports.ChatAppFrameSelector = ChatAppFrameSelector;\r\n\n\n//# sourceURL=webpack:///./src/ts/app/ChatAppFrameSelector.ts?");
+
+/***/ }),
+
+/***/ "./src/ts/app/ChatSelector.ts":
+/*!************************************!*\
+  !*** ./src/ts/app/ChatSelector.ts ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nvar __extends = (this && this.__extends) || (function () {\r\n    var extendStatics = function (d, b) {\r\n        extendStatics = Object.setPrototypeOf ||\r\n            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\r\n            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };\r\n        return extendStatics(d, b);\r\n    }\r\n    return function (d, b) {\r\n        extendStatics(d, b);\r\n        function __() { this.constructor = d; }\r\n        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n    };\r\n})();\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nvar PlayerSelector_1 = __webpack_require__(/*! app/PlayerSelector */ \"./src/ts/app/PlayerSelector.ts\");\r\nvar Selector_1 = __webpack_require__(/*! components/Selector */ \"./src/ts/components/Selector.ts\");\r\n/**\r\n * @export\r\n * @class ChatSelector\r\n * @extends {Selector}\r\n */\r\nvar ChatSelector = /** @class */ (function (_super) {\r\n    __extends(ChatSelector, _super);\r\n    /**\r\n     * Creates an instance of ChatSelector.\r\n     *\r\n     * @memberof ChatSelector\r\n     */\r\n    function ChatSelector() {\r\n        var _this = _super.call(this, 'ytd-live-chat-frame') || this;\r\n        /**\r\n         * class name attaches when overlay mode enabled\r\n         *\r\n         * @private\r\n         * @type {string}\r\n         * @memberof ChatSelector\r\n         */\r\n        _this.overlayClass = 'overlay-mode';\r\n        _this.playerSelector = new PlayerSelector_1.PlayerSelector();\r\n        _this.initialize();\r\n        return _this;\r\n    }\r\n    Object.defineProperty(ChatSelector.prototype, \"isOverlayMode\", {\r\n        /**\r\n         * get chat window is overlay mode\r\n         *\r\n         * @readonly\r\n         * @private\r\n         * @type {boolean}\r\n         * @memberof ChatSelector\r\n         */\r\n        get: function () {\r\n            return this.element.classList.contains(this.overlayClass);\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    /**\r\n     * initialize\r\n     *\r\n     * @private\r\n     * @memberof ChatSelector\r\n     */\r\n    ChatSelector.prototype.initialize = function () {\r\n        var _this = this;\r\n        window.onresize = function () {\r\n            _this.setHeight();\r\n        };\r\n    };\r\n    /**\r\n     * change chat overlay mode\r\n     *\r\n     * @param {boolean} isOverlayMode\r\n     * @memberof ChatSelector\r\n     */\r\n    ChatSelector.prototype.changeMode = function (isOverlayMode) {\r\n        this.element.classList.toggle(this.overlayClass, isOverlayMode);\r\n        this.setHeight();\r\n    };\r\n    /**\r\n     * toggle chat overlay mode\r\n     *\r\n     * @memberof ChatSelector\r\n     */\r\n    ChatSelector.prototype.toggleMode = function () {\r\n        this.changeMode(!this.isOverlayMode);\r\n    };\r\n    /**\r\n     * set height calculate from player height\r\n     *\r\n     * @memberof ChatSelector\r\n     */\r\n    ChatSelector.prototype.setHeight = function () {\r\n        var _this = this;\r\n        // wait change mode by SetTimeout\r\n        // TODO: fix it.\r\n        setTimeout(function () {\r\n            if (_this.isOverlayMode) {\r\n                var height = _this.playerSelector.height - 45;\r\n                var style = \"\\n          max-height: \" + height.toString() + \"px;\\n          height: \" + height.toString() + \"px;\\n        \";\r\n                _this.element.setAttribute('style', style);\r\n                return;\r\n            }\r\n            _this.element.removeAttribute('style');\r\n        }, 500);\r\n    };\r\n    return ChatSelector;\r\n}(Selector_1.Selector));\r\nexports.ChatSelector = ChatSelector;\r\n\n\n//# sourceURL=webpack:///./src/ts/app/ChatSelector.ts?");
+
+/***/ }),
+
+/***/ "./src/ts/app/PlayerModeSelector.ts":
+/*!******************************************!*\
+  !*** ./src/ts/app/PlayerModeSelector.ts ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nvar __extends = (this && this.__extends) || (function () {\r\n    var extendStatics = function (d, b) {\r\n        extendStatics = Object.setPrototypeOf ||\r\n            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\r\n            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };\r\n        return extendStatics(d, b);\r\n    }\r\n    return function (d, b) {\r\n        extendStatics(d, b);\r\n        function __() { this.constructor = d; }\r\n        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n    };\r\n})();\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nvar Selector_1 = __webpack_require__(/*! components/Selector */ \"./src/ts/components/Selector.ts\");\r\n/**\r\n * @export\r\n * @class PlayerModeSelector\r\n * @extends {Selector}\r\n */\r\nvar PlayerModeSelector = /** @class */ (function (_super) {\r\n    __extends(PlayerModeSelector, _super);\r\n    /**\r\n     * Creates an instance of PlayerModeSelector.\r\n     *\r\n     * @memberof PlayerModeSelector\r\n     */\r\n    function PlayerModeSelector() {\r\n        return _super.call(this, '.ytp-size-button') || this;\r\n    }\r\n    /**\r\n     * set onclick event function\r\n     *\r\n     * @param {() => void} callback\r\n     * @returns {boolean}\r\n     * @memberof PlayerModeSelector\r\n     */\r\n    PlayerModeSelector.prototype.setOnclick = function (callback) {\r\n        var htmlElement = this.element;\r\n        if (htmlElement === null) {\r\n            return false;\r\n        }\r\n        htmlElement.onclick = callback;\r\n        return true;\r\n    };\r\n    return PlayerModeSelector;\r\n}(Selector_1.Selector));\r\nexports.PlayerModeSelector = PlayerModeSelector;\r\n\n\n//# sourceURL=webpack:///./src/ts/app/PlayerModeSelector.ts?");
+
+/***/ }),
+
+/***/ "./src/ts/app/PlayerSelector.ts":
+/*!**************************************!*\
+  !*** ./src/ts/app/PlayerSelector.ts ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nvar __extends = (this && this.__extends) || (function () {\r\n    var extendStatics = function (d, b) {\r\n        extendStatics = Object.setPrototypeOf ||\r\n            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\r\n            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };\r\n        return extendStatics(d, b);\r\n    }\r\n    return function (d, b) {\r\n        extendStatics(d, b);\r\n        function __() { this.constructor = d; }\r\n        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n    };\r\n})();\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nvar Selector_1 = __webpack_require__(/*! components/Selector */ \"./src/ts/components/Selector.ts\");\r\n/**\r\n * @export\r\n * @class PlayerSelector\r\n * @extends {Selector}\r\n */\r\nvar PlayerSelector = /** @class */ (function (_super) {\r\n    __extends(PlayerSelector, _super);\r\n    /**\r\n     * Creates an instance of PlayerSelector.\r\n     *\r\n     * @memberof PlayerSelector\r\n     */\r\n    function PlayerSelector() {\r\n        return _super.call(this, '.html5-video-player') || this;\r\n    }\r\n    Object.defineProperty(PlayerSelector.prototype, \"height\", {\r\n        /**\r\n         * get player height\r\n         *\r\n         * @readonly\r\n         * @type {number}\r\n         * @memberof PlayerSelector\r\n         */\r\n        get: function () {\r\n            return this.htmlElement.clientHeight;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    return PlayerSelector;\r\n}(Selector_1.Selector));\r\nexports.PlayerSelector = PlayerSelector;\r\n\n\n//# sourceURL=webpack:///./src/ts/app/PlayerSelector.ts?");
+
+/***/ }),
+
+/***/ "./src/ts/app/YouTubeLiveOverlayer.ts":
+/*!********************************************!*\
+  !*** ./src/ts/app/YouTubeLiveOverlayer.ts ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nvar __extends = (this && this.__extends) || (function () {\r\n    var extendStatics = function (d, b) {\r\n        extendStatics = Object.setPrototypeOf ||\r\n            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\r\n            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };\r\n        return extendStatics(d, b);\r\n    }\r\n    return function (d, b) {\r\n        extendStatics(d, b);\r\n        function __() { this.constructor = d; }\r\n        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n    };\r\n})();\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nvar Cookies_1 = __webpack_require__(/*! components/Cookies */ \"./src/ts/components/Cookies.ts\");\r\nvar ChatSelector_1 = __webpack_require__(/*! app/ChatSelector */ \"./src/ts/app/ChatSelector.ts\");\r\nvar ChatAppFrameSelector_1 = __webpack_require__(/*! app/ChatAppFrameSelector */ \"./src/ts/app/ChatAppFrameSelector.ts\");\r\nvar PlayerModeSelector_1 = __webpack_require__(/*! app/PlayerModeSelector */ \"./src/ts/app/PlayerModeSelector.ts\");\r\nvar Selector_1 = __webpack_require__(/*! components/Selector */ \"./src/ts/components/Selector.ts\");\r\n/**\r\n * @export\r\n * @class YouTubeLiveOverlayer\r\n */\r\nvar YouTubeLiveOverlayer = /** @class */ (function (_super) {\r\n    __extends(YouTubeLiveOverlayer, _super);\r\n    /**\r\n     * Creates an instance of YouTubeLiveOverlayer.\r\n     *\r\n     * @memberof YouTubeLiveOverlayer\r\n     */\r\n    function YouTubeLiveOverlayer() {\r\n        var _this = _super.call(this, 'body') || this;\r\n        /**\r\n         * class name attaches when overlay mode enabled\r\n         *\r\n         * @private\r\n         * @type {string}\r\n         * @memberof ChatSelector\r\n         */\r\n        _this.overlayClass = 'overlay-mode';\r\n        _this.cookies = new Cookies_1.Cookies();\r\n        _this.chatSelector = new ChatSelector_1.ChatSelector();\r\n        _this.chatAppFrameSelector = new ChatAppFrameSelector_1.ChatAppFrameSelector();\r\n        _this.playerModeSelector = new PlayerModeSelector_1.PlayerModeSelector();\r\n        _this.playerModeSelector.setOnclick(function () {\r\n            _this.toggleMode();\r\n        });\r\n        _this.changeMode(_this.cookies.isWide);\r\n        return _this;\r\n    }\r\n    Object.defineProperty(YouTubeLiveOverlayer.prototype, \"isOverlayMode\", {\r\n        /**\r\n         * get chat window is overlay mode\r\n         *\r\n         * @readonly\r\n         * @private\r\n         * @type {boolean}\r\n         * @memberof YouTubeLiveOverlayer\r\n         */\r\n        get: function () {\r\n            return this.element.classList.contains(this.overlayClass);\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    /**\r\n     * change chat overlay mode\r\n     *\r\n     * @param {boolean} isOverlayMode\r\n     * @memberof YouTubeLiveOverlayer\r\n     */\r\n    YouTubeLiveOverlayer.prototype.changeMode = function (isOverlayMode) {\r\n        this.element.classList.toggle(this.overlayClass, isOverlayMode);\r\n        this.chatAppFrameSelector.changeMode(this.overlayClass, isOverlayMode);\r\n    };\r\n    /**\r\n     * toggle chat overlay mode\r\n     *\r\n     * @memberof YouTubeLiveOverlayer\r\n     */\r\n    YouTubeLiveOverlayer.prototype.toggleMode = function () {\r\n        this.changeMode(!this.isOverlayMode);\r\n    };\r\n    /**\r\n     * try new instance\r\n     *\r\n     * @static\r\n     * @returns {(YouTubeLiveOverlayer | null)}\r\n     * @memberof YouTubeLiveOverlayer\r\n     */\r\n    YouTubeLiveOverlayer.tryNew = function () {\r\n        try {\r\n            return new YouTubeLiveOverlayer();\r\n        }\r\n        catch (error) {\r\n            return null;\r\n        }\r\n    };\r\n    return YouTubeLiveOverlayer;\r\n}(Selector_1.Selector));\r\nexports.YouTubeLiveOverlayer = YouTubeLiveOverlayer;\r\n\n\n//# sourceURL=webpack:///./src/ts/app/YouTubeLiveOverlayer.ts?");
+
+/***/ }),
+
+/***/ "./src/ts/components/Cookies.ts":
+/*!**************************************!*\
+  !*** ./src/ts/components/Cookies.ts ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n/**\r\n * manage cookie class\r\n *\r\n * @export\r\n * @class Cookies\r\n */\r\nvar Cookies = /** @class */ (function () {\r\n    /**\r\n     * Creates an instance of Cookies.\r\n     *\r\n     * @memberof Cookies\r\n     */\r\n    function Cookies() {\r\n        this.cookies = this.getCookies();\r\n    }\r\n    Object.defineProperty(Cookies.prototype, \"isWide\", {\r\n        get: function () {\r\n            return this.getValue('wide') === '1';\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    /**\r\n     * get cookie with name\r\n     *\r\n     * @param {string} name\r\n     * @returns {string}\r\n     * @memberof Cookies\r\n     */\r\n    Cookies.prototype.getValue = function (name) {\r\n        var cookie = this.cookies.filter(function (cookie) {\r\n            return cookie.key === name;\r\n        })[0];\r\n        return cookie ? cookie.value : '';\r\n    };\r\n    /**\r\n     * reload cookies\r\n     *\r\n     * @memberof Cookies\r\n     */\r\n    Cookies.prototype.update = function () {\r\n        this.cookies = this.getCookies();\r\n    };\r\n    /**\r\n     * get all cookies array\r\n     *\r\n     * @private\r\n     * @returns {Array<{ key: string, value: string }>}\r\n     * @memberof Cookies\r\n     */\r\n    Cookies.prototype.getCookies = function () {\r\n        var cookies = document.cookie.split('; ');\r\n        return cookies.map(function (cookie) {\r\n            return {\r\n                key: cookie.split('=')[0],\r\n                value: cookie.split('=')[1],\r\n            };\r\n        });\r\n    };\r\n    return Cookies;\r\n}());\r\nexports.Cookies = Cookies;\r\n\n\n//# sourceURL=webpack:///./src/ts/components/Cookies.ts?");
+
+/***/ }),
+
+/***/ "./src/ts/components/Selector.ts":
+/*!***************************************!*\
+  !*** ./src/ts/components/Selector.ts ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n/**\r\n * DOM selector abstract class\r\n *\r\n * @export\r\n * @class Selector\r\n */\r\nvar Selector = /** @class */ (function () {\r\n    /**\r\n     * Creates an instance of Selector.\r\n     *\r\n     * @param {string} selector\r\n     * @memberof Selector\r\n     */\r\n    function Selector(query) {\r\n        this.query = query;\r\n    }\r\n    Object.defineProperty(Selector.prototype, \"element\", {\r\n        /**\r\n         * get element with query selector\r\n         *\r\n         * @readonly\r\n         * @type {Element}\r\n         * @memberof Selector\r\n         */\r\n        get: function () {\r\n            var element = document.querySelector(this.query);\r\n            if (element === null) {\r\n                throw new Error('DOM not found with selector.' + this.query);\r\n            }\r\n            return element;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    Object.defineProperty(Selector.prototype, \"htmlElement\", {\r\n        /**\r\n         * get html element with query selector\r\n         *\r\n         * @readonly\r\n         * @type {HTMLElement}\r\n         * @memberof Selector\r\n         */\r\n        get: function () {\r\n            var htmlElement = this.element;\r\n            if (htmlElement === null) {\r\n                throw new Error('DOM is not HTMLElement.');\r\n            }\r\n            return htmlElement;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    /**\r\n     * DOM generated or not found\r\n     *\r\n     * @returns {boolean}\r\n     * @memberof Selector\r\n     */\r\n    Selector.prototype.isGenerated = function () {\r\n        var element = document.querySelector(this.query);\r\n        return element !== null;\r\n    };\r\n    return Selector;\r\n}());\r\nexports.Selector = Selector;\r\n\n\n//# sourceURL=webpack:///./src/ts/components/Selector.ts?");
+
+/***/ }),
+
+/***/ 0:
+/*!*************************************************!*\
+  !*** multi ./src/ts/app.ts ./src/scss/app.scss ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("__webpack_require__(/*! ./src/ts/app.ts */\"./src/ts/app.ts\");\nmodule.exports = __webpack_require__(/*! ./src/scss/app.scss */\"./src/scss/app.scss\");\n\n\n//# sourceURL=webpack:///multi_./src/ts/app.ts_./src/scss/app.scss?");
+
+/***/ })
+
+/******/ });

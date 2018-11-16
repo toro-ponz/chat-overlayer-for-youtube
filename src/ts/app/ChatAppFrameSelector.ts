@@ -1,5 +1,4 @@
 import { Selector } from 'components/Selector'
-import { ChatAppSelector } from 'chat/ChatAppSelector'
 
 /**
  * @export
@@ -17,47 +16,49 @@ export class ChatAppFrameSelector extends Selector {
   }
 
   /**
+   * change overlay mode
+   *
+   * @param {string} overlayClass
+   * @param {boolean} isOverlayMode
+   * @memberof ChatAppFrameSelector
+   */
+  public changeMode(overlayClass: string, isOverlayMode: boolean): void {
+    this.innerDocument.body.classList.toggle(overlayClass, isOverlayMode)
+  }
+
+  /**
    * get iframe element
    *
+   * @private
    * @readonly
    * @type {HTMLIFrameElement}
    * @memberof ChatAppFrameSelector
    */
-  public get element(): HTMLIFrameElement {
-    const element = document.querySelector(this.query) as HTMLIFrameElement;
+  private get iframe(): HTMLIFrameElement {
+    const iframe = document.querySelector(this.query) as HTMLIFrameElement;
 
-    if (element === null) {
+    if (iframe === null) {
       throw new Error('DOM is not HTMLframeElement')
     }
 
-    return element
+    return iframe
   }
 
   /**
    * get document inner iframe
    *
+   * @private
    * @readonly
    * @type {Document}
    * @memberof ChatAppFrameSelector
    */
-  public get innerDocument(): Document {
-    const frame = this.element
+  private get innerDocument(): Document {
+    const frame = this.iframe
 
     if (frame.contentWindow === null || frame.contentWindow.document === null) {
       throw new Error('document not found.')
     }
 
     return frame.contentWindow.document
-  }
-
-  /**
-   * get inner chat app selector instance
-   *
-   * @readonly
-   * @type {ChatAppSelector}
-   * @memberof ChatAppFrameSelector
-   */
-  public get chatAppSelector(): ChatAppSelector {
-    return new ChatAppSelector(this.innerDocument)
   }
 }
