@@ -1,20 +1,24 @@
 # YouTube Live Overlayer
 
 YouTube Live comment overlayer on stream extension powered by Web Extensions.
+Supported on live, live replay and premiere release comment.
 
 ## Support
 
 * Google Chrome (69+)
-* Firefox Quantum (57+)
 
 ## Usage
 
-1. ~~Install extensions store.~~  
-2. View YouTube Live.
+1. Install from [extensions store](https://chrome.google.com/webstore/detail/youtube-live-overlayer/hpdlnlpkaigpokddgcfeelaccdlalonh).
+2. View YouTube.
 3. Change player mode to theater.
 
-Not available on extensions store now.  
-If you need this, clone this repository and add extension from local(`dist` directory).
+## Development & Debug
+
+1. Clone this repository.
+2. Install to Chrome by unpackage extension, select `dist` directory.
+3. View YouTube.
+4. Change player mode to theater.
 
 ## Author
 
