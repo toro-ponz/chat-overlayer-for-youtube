@@ -16,7 +16,7 @@
       "css": ["css/app.css"],
       "js": ["js/app.js"],
       "matches": [
-        "https://www.youtube.com/watch*"
+        "https://www.youtube.com/*"
       ],
       "run_at": "document_end"
     },
@@ -30,6 +30,9 @@
       "run_at": "document_end",
       "all_frames": true
     }
+  ],
+  "permissions": [
+    "https://www.youtube.com/*"
   ],
   "manifest_version": 2
 }

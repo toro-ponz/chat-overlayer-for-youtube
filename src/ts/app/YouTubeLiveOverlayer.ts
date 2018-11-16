@@ -96,25 +96,6 @@ export class YouTubeLiveOverlayer {
   }
 
   /**
-   * try new instance interval
-   *
-   * @static
-   * @param {number} interval
-   * @returns {YouTubeLiveOverlayer}
-   * @memberof YouTubeLiveOverlayer
-   */
-  public static tryNewInterval(interval:number): YouTubeLiveOverlayer {
-    const instance = this.tryNew()
-
-    if (instance === null) {
-      throw new Error('DOM not found.')
-    }
-
-    clearInterval(interval)
-    return instance
-  }
-
-  /**
    * try new instance
    *
    * @static
