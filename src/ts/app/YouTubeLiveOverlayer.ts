@@ -2,13 +2,14 @@ import { Cookies } from 'components/Cookies'
 import { ChatSelector } from 'app/ChatSelector';
 import { ChatAppFrameSelector } from 'app/ChatAppFrameSelector'
 import { PlayerModeSelector } from 'app/PlayerModeSelector'
-import { OfflineStateBarSelector } from 'app/OfflineStateBarSelector'
+import { Selector } from 'components/Selector'
+import { Mode } from 'components/Mode';
 
 /**
  * @export
  * @class YouTubeLiveOverlayer
  */
-export class YouTubeLiveOverlayer {
+export class YouTubeLiveOverlayer extends Selector {
   /**
    * cookies instance
    *
@@ -19,13 +20,13 @@ export class YouTubeLiveOverlayer {
   private cookies: Cookies
 
   /**
-   * is overlay mode enabled
+   * mode instance
    *
    * @private
-   * @type {boolean}
+   * @type {Mode}
    * @memberof YouTubeLiveOverlayer
    */
-  private isOverlayMode: boolean
+  private mode: Mode
 
   /**
    * chat selector instance
@@ -55,44 +56,45 @@ export class YouTubeLiveOverlayer {
   private playerModeSelector: PlayerModeSelector
 
   /**
-   * offline state bar selector instance
-   *
-   * @private
-   * @type {OfflineStateBarSelector}
-   * @memberof YouTubeLiveOverlayer
-   */
-  private offlineStateBarSelector: OfflineStateBarSelector
-
-  /**
    * Creates an instance of YouTubeLiveOverlayer.
    *
    * @memberof YouTubeLiveOverlayer
    */
   public constructor() {
+    super('body')
+
     this.cookies = new Cookies()
-    this.isOverlayMode = this.cookies.getValue('wide') === '1'
+    this.mode = new Mode()
+
     this.chatSelector = new ChatSelector()
     this.chatAppFrameSelector = new ChatAppFrameSelector()
     this.playerModeSelector = new PlayerModeSelector()
-    this.offlineStateBarSelector = new OfflineStateBarSelector()
+    this.playerModeSelector.setOnclick(() => {
+      this.toggleMode()
+    })
 
-    this.initialize()
+    this.changeMode(this.cookies.isWide)
   }
 
   /**
-   * initialize
+   * change chat overlay mode
+   *
+   * @param {boolean} isOverlayMode
+   * @memberof YouTubeLiveOverlayer
+   */
+  public changeMode(isOverlayMode: boolean): void {
+    this.element.classList.toggle(this.mode.class, isOverlayMode)
+    this.chatAppFrameSelector.changeMode(this.mode.class, isOverlayMode)
+    this.chatSelector.setHeight()
+  }
+
+  /**
+   * toggle chat overlay mode
    *
    * @memberof YouTubeLiveOverlayer
    */
-  public initialize(): void {
-    this.chatSelector.changeMode(this.isOverlayMode)
-    this.offlineStateBarSelector.changeMode(this.isOverlayMode)
-
-    this.playerModeSelector.setOnclick(() => {
-      this.chatSelector.toggleMode()
-      this.offlineStateBarSelector.toggleMode()
-      this.chatAppFrameSelector.chatAppSelector.toggleMode()
-    })
+  public toggleMode(): void {
+    this.changeMode(!this.mode.isOverlay)
   }
 
   /**

@@ -1,93 +1,98 @@
-// chat app on overlay mode
-yt-live-chat-app.overlay-mode {
+// overlay mode
+body.overlay-mode {
 
-  // chat header
-  yt-live-chat-header-renderer {
-    display: none !important;
-  }
+  // chat app on overlay mode
+  yt-live-chat-app {
 
-  // transparent chat background
-  yt-live-chat-renderer {
-    background: transparent !important;
-    background-color: transparent !important;
-  }
-
-  // superchat
-  yt-live-chat-ticker-renderer {
-
-    #items.yt-live-chat-ticker-renderer {
-      padding: 0 24px 0px 24px !important;
+    // chat header
+    yt-live-chat-header-renderer {
+      display: none !important;
     }
 
-    // scroll arrow
-    #left-arrow-container,
-    #right-arrow-container {
+    // transparent chat background
+    yt-live-chat-renderer {
       background: transparent !important;
+      background-color: transparent !important;
     }
-  }
 
-  // chat list
-  yt-live-chat-item-list-renderer {
+    // superchat
+    yt-live-chat-ticker-renderer {
 
-    // scrollbar
-    div#item-scroller {
+      #items.yt-live-chat-ticker-renderer {
+        padding: 0 24px 0px 24px !important;
+      }
 
-      &::-webkit-scrollbar {
+      // scroll arrow
+      #left-arrow-container,
+      #right-arrow-container {
+        background: transparent !important;
+      }
+    }
+
+    // chat list
+    yt-live-chat-item-list-renderer {
+
+      // scrollbar
+      div#item-scroller {
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+    }
+
+    // individual comment
+    yt-live-chat-text-message-renderer {
+
+      // streamer comment
+      &[is-highlighted],
+      &[author-is-owner] {
+        background: transparent !important;
+
+        // comment user name
+        yt-live-chat-author-chip span#author-name {
+          color: black !important;
+        }
+      }
+
+      // comment user name
+      yt-live-chat-author-chip span#author-name {
+        color: lightgray !important;
+      }
+
+      // comment message
+      span#message {
+        color: white !important;
+      }
+
+      // comment menu
+      div#menu {
+        background: transparent !important;
+
+        // button icon
+        svg {
+          color: white;
+        }
+      }
+    }
+
+    // chat input panel
+    iron-pages {
+      &#panel-pages {
         display: none;
       }
     }
   }
 
-  // individual comment
-  yt-live-chat-text-message-renderer {
+  // hack Firefox
+  @-moz-document url-prefix() {
+    yt-live-chat-item-list-renderer {
 
-    // streamer comment
-    &[is-highlighted] {
-      background: transparent !important;
-
-      // comment user name
-      yt-live-chat-author-chip span#author-name {
-        color: black !important;
+      // scrollbar
+      div#item-scroller {
+        margin-right: -17px !important;
+        overflow-y: scroll;
       }
-    }
-
-    // comment user name
-    yt-live-chat-author-chip span#author-name {
-      color: lightgray !important;
-    }
-
-    // comment message
-    span#message {
-      color: white !important;
-    }
-
-    // comment menu
-    div#menu {
-      background: transparent !important;
-
-      // button icon
-      svg {
-        color: white;
-      }
-    }
-  }
-
-  // chat input panel
-  iron-pages {
-    &#panel-pages {
-      display: none;
-    }
-  }
-}
-
-// hack Firefox
-@-moz-document url-prefix() {
-  yt-live-chat-item-list-renderer {
-
-    // scrollbar
-    div#item-scroller {
-      margin-right: -17px !important;
-      overflow-y: scroll;
     }
   }
 }

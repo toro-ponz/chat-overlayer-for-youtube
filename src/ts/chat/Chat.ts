@@ -1,11 +1,12 @@
 import { Cookies } from 'components/Cookies'
-import { ChatAppSelector } from 'chat/ChatAppSelector'
+import { Selector } from 'components/Selector';
+import { Mode } from 'components/Mode';
 
 /**
  * @export
  * @class Chat
  */
-export class Chat {
+export class Chat extends Selector {
   /**
    * cookies instance
    *
@@ -16,22 +17,13 @@ export class Chat {
   private cookies: Cookies
 
   /**
-   * is overlay mode enabled
+   * mode instance
    *
    * @private
-   * @type {boolean}
+   * @type {Mode}
    * @memberof Chat
    */
-  private isOverlayMode: boolean
-
-  /**
-   * chat app selector instance
-   *
-   * @private
-   * @type {ChatAppSelector}
-   * @memberof Chat
-   */
-  private chatAppSelector: ChatAppSelector
+  private mode: Mode
 
   /**
    * Creates an instance of Chat.
@@ -39,20 +31,30 @@ export class Chat {
    * @memberof Chat
    */
   public constructor() {
-    this.cookies = new Cookies()
-    this.isOverlayMode = this.cookies.getValue('wide') === '1'
-    this.chatAppSelector = new ChatAppSelector()
+    super('body')
 
-    this.initialize()
+    this.cookies = new Cookies()
+    this.mode = new Mode()
+
+    this.changeMode(this.cookies.isWide)
   }
 
   /**
-   * initialize
+   * change chat overlay mode
    *
-   * @private
+   * @param {boolean} isOverlayMode
    * @memberof Chat
    */
-  private initialize(): void {
-    this.chatAppSelector.changeMode(this.isOverlayMode)
+  public changeMode(isOverlayMode: boolean): void {
+    this.element.classList.toggle(this.mode.class, isOverlayMode)
+  }
+
+  /**
+   * toggle chat overlay mode
+   *
+   * @memberof Chat
+   */
+  public toggleMode(): void {
+    this.changeMode(!this.mode.isOverlay)
   }
 }
