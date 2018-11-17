@@ -12,6 +12,7 @@ window.onload = () => {
   const observer: MutationObserver = new MutationObserver(
     (records: MutationRecord[]) => {
       for (let i = 0; i < records.length; i++) {
+        // added chat area
         Array.from(records[i].addedNodes)
           .filter((node: Node) => node.nodeName === CHAT_FRAME_NAME)
           .some(() => {
@@ -19,6 +20,7 @@ window.onload = () => {
             return true
           })
 
+        // removed chat area
         Array.from(records[i].removedNodes)
           .filter((node: Node) => node.nodeName === CHAT_FRAME_NAME)
           .some(() => {

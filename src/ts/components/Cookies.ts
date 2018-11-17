@@ -23,7 +23,14 @@ export class Cookies {
     this.cookies = this.getCookies()
   }
 
-  public get isWide() {
+  /**
+   * get is wide mode enabled on cookie
+   *
+   * @readonly
+   * @returns {boolean}
+   * @memberof Cookies
+   */
+  public get isWide(): boolean {
     return this.getValue('wide') === '1'
   }
 

@@ -24,7 +24,7 @@ export class YouTubeLiveOverlayer extends Selector {
    *
    * @private
    * @type {Mode}
-   * @memberof Chat
+   * @memberof YouTubeLiveOverlayer
    */
   private mode: Mode
 

@@ -7,6 +7,13 @@ import { PlayerContainerSelector } from './PlayerContainerSelector';
  * @extends {Selector}
  */
 export class PlayerSelector extends Selector {
+  /**
+   * player container selector instance
+   *
+   * @private
+   * @type {PlayerContainerSelector}
+   * @memberof PlayerSelector
+   */
   private playerContainerSelector: PlayerContainerSelector
 
   /**

@@ -22,7 +22,7 @@ export class ChatSelector extends Selector {
    *
    * @private
    * @type {PlayerSelector}
-   * @memberof YouTubeLiveOverlayer
+   * @memberof ChatSelector
    */
   private playerSelector: PlayerSelector
 
@@ -50,26 +50,6 @@ export class ChatSelector extends Selector {
     window.onresize = () => {
       this.setHeight()
     }
-  }
-
-  /**
-   * change chat overlay mode
-   *
-   * @param {boolean} isOverlayMode
-   * @memberof ChatSelector
-   */
-  public changeMode(isOverlayMode: boolean): void {
-    this.element.classList.toggle(this.mode.class, isOverlayMode)
-    this.setHeight()
-  }
-
-  /**
-   * toggle chat overlay mode
-   *
-   * @memberof ChatSelector
-   */
-  public toggleMode(): void {
-    this.changeMode(!this.mode.isOverlay)
   }
 
   /**
