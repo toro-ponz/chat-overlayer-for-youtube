@@ -1,20 +1,12 @@
 import { Cookies } from 'components/Cookies'
 import { Selector } from 'components/Selector';
+import { Mode } from 'components/Mode';
 
 /**
  * @export
  * @class Chat
  */
 export class Chat extends Selector {
-  /**
-   * class name attaches when overlay mode enabled
-   *
-   * @private
-   * @type {string}
-   * @memberof ChatSelector
-   */
-  private overlayClass: string = 'overlay-mode'
-
   /**
    * cookies instance
    *
@@ -25,6 +17,15 @@ export class Chat extends Selector {
   private cookies: Cookies
 
   /**
+   * mode instance
+   *
+   * @private
+   * @type {Mode}
+   * @memberof Chat
+   */
+  private mode: Mode
+
+  /**
    * Creates an instance of Chat.
    *
    * @memberof Chat
@@ -33,20 +34,9 @@ export class Chat extends Selector {
     super('body')
 
     this.cookies = new Cookies()
+    this.mode = new Mode()
 
     this.changeMode(this.cookies.isWide)
-  }
-
-  /**
-   * get chat window is overlay mode
-   *
-   * @readonly
-   * @private
-   * @type {boolean}
-   * @memberof Chat
-   */
-  private get isOverlayMode(): boolean {
-    return this.element.classList.contains(this.overlayClass)
   }
 
   /**
@@ -56,7 +46,7 @@ export class Chat extends Selector {
    * @memberof Chat
    */
   public changeMode(isOverlayMode: boolean): void {
-    this.element.classList.toggle(this.overlayClass, isOverlayMode)
+    this.element.classList.toggle(this.mode.class, isOverlayMode)
   }
 
   /**
@@ -65,6 +55,6 @@ export class Chat extends Selector {
    * @memberof Chat
    */
   public toggleMode(): void {
-    this.changeMode(!this.isOverlayMode)
+    this.changeMode(!this.mode.isOverlay)
   }
 }

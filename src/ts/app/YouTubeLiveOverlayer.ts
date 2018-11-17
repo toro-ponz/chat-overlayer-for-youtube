@@ -3,21 +3,13 @@ import { ChatSelector } from 'app/ChatSelector';
 import { ChatAppFrameSelector } from 'app/ChatAppFrameSelector'
 import { PlayerModeSelector } from 'app/PlayerModeSelector'
 import { Selector } from 'components/Selector'
+import { Mode } from 'components/Mode';
 
 /**
  * @export
  * @class YouTubeLiveOverlayer
  */
 export class YouTubeLiveOverlayer extends Selector {
-  /**
-   * class name attaches when overlay mode enabled
-   *
-   * @private
-   * @type {string}
-   * @memberof ChatSelector
-   */
-  private overlayClass: string = 'overlay-mode'
-
   /**
    * cookies instance
    *
@@ -26,6 +18,15 @@ export class YouTubeLiveOverlayer extends Selector {
    * @memberof YouTubeLiveOverlayer
    */
   private cookies: Cookies
+
+  /**
+   * mode instance
+   *
+   * @private
+   * @type {Mode}
+   * @memberof Chat
+   */
+  private mode: Mode
 
   /**
    * chat selector instance
@@ -63,6 +64,7 @@ export class YouTubeLiveOverlayer extends Selector {
     super('body')
 
     this.cookies = new Cookies()
+    this.mode = new Mode()
 
     this.chatSelector = new ChatSelector()
     this.chatAppFrameSelector = new ChatAppFrameSelector()
@@ -75,26 +77,14 @@ export class YouTubeLiveOverlayer extends Selector {
   }
 
   /**
-   * get chat window is overlay mode
-   *
-   * @readonly
-   * @private
-   * @type {boolean}
-   * @memberof YouTubeLiveOverlayer
-   */
-  private get isOverlayMode(): boolean {
-    return this.element.classList.contains(this.overlayClass)
-  }
-
-  /**
    * change chat overlay mode
    *
    * @param {boolean} isOverlayMode
    * @memberof YouTubeLiveOverlayer
    */
   public changeMode(isOverlayMode: boolean): void {
-    this.element.classList.toggle(this.overlayClass, isOverlayMode)
-    this.chatAppFrameSelector.changeMode(this.overlayClass, isOverlayMode)
+    this.element.classList.toggle(this.mode.class, isOverlayMode)
+    this.chatAppFrameSelector.changeMode(this.mode.class, isOverlayMode)
   }
 
   /**
@@ -103,7 +93,7 @@ export class YouTubeLiveOverlayer extends Selector {
    * @memberof YouTubeLiveOverlayer
    */
   public toggleMode(): void {
-    this.changeMode(!this.isOverlayMode)
+    this.changeMode(!this.mode.isOverlay)
   }
 
   /**
