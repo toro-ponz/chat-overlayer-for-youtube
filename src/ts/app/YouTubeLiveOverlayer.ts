@@ -85,6 +85,7 @@ export class YouTubeLiveOverlayer extends Selector {
   public changeMode(isOverlayMode: boolean): void {
     this.element.classList.toggle(this.mode.class, isOverlayMode)
     this.chatAppFrameSelector.changeMode(this.mode.class, isOverlayMode)
+    this.chatSelector.setHeight()
   }
 
   /**
