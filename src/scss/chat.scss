@@ -45,7 +45,8 @@ body.overlay-mode {
     yt-live-chat-text-message-renderer {
 
       // streamer comment
-      &[is-highlighted] {
+      &[is-highlighted],
+      &[author-is-owner] {
         background: transparent !important;
 
         // comment user name
