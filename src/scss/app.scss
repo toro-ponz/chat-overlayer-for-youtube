@@ -5,6 +5,17 @@ body.overlay-mode {
   #content {
     position: relative;
 
+    // video player
+    .html5-video-player {
+      .html5-video-container {
+        // video snap to right
+        .html5-main-video {
+          left: auto !important;
+          right: 0 !important;
+        }
+      }
+    }
+
     // chat window
     #chat {
       background: rgba(0, 0, 0, 0.25);

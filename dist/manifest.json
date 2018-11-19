@@ -3,7 +3,7 @@
   "name": "YouTube Live Overlayer",
   "description": "YouTube Live comment overlayer on stream extension.",
   "author": "とろゝ",
-  "version": "0.9.2.1",
+  "version": "0.9.2.2",
   "icons": {
     "16": "icons/16.png",
     "19": "icons/19.png",
