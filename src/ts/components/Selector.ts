@@ -42,6 +42,17 @@ export abstract class Selector {
   }
 
   /**
+   * get all elements with query selector
+   *
+   * @readonly
+   * @type {NodeListOf<Element>}
+   * @memberof Selector
+   */
+  public get elements(): NodeListOf<Element> {
+    return document.querySelectorAll(this.query)
+  }
+
+  /**
    * get html element with query selector
    *
    * @readonly
@@ -56,6 +67,17 @@ export abstract class Selector {
     }
 
     return htmlElement
+  }
+
+  /**
+   * get all html elements with query selector
+   *
+   * @readonly
+   * @type {NodeListOf<Element>}
+   * @memberof Selector
+   */
+  public get htmlElements(): NodeListOf<HTMLElement> {
+    return document.querySelectorAll(this.query)
   }
 
   /**
