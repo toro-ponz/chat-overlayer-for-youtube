@@ -19,17 +19,11 @@ export class PlayerModeSelector extends Selector {
    * set onclick event function
    *
    * @param {() => void} callback
-   * @returns {boolean}
    * @memberof PlayerModeSelector
    */
-  public setOnclick(callback: () => void): boolean {
-    const htmlElement = this.element as HTMLElement
-
-    if (htmlElement === null) {
-      return false
-    }
-
-    htmlElement.onclick = callback
-    return true
+  public setOnclick(callback: () => void): void {
+    this.htmlElements.forEach((element) => {
+      element.onclick = callback
+    });
   }
 }
