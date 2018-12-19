@@ -77,6 +77,13 @@ export class YouTubeLiveOverlayer extends Selector {
   }
 
   /**
+   * dispose attached element
+   */
+  public dispose(): void {
+    this.element.classList.toggle(this.mode.class, false)
+  }
+
+  /**
    * change chat overlay mode
    *
    * @param {boolean} isOverlayMode

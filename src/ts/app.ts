@@ -22,7 +22,10 @@ const observer: MutationObserver = new MutationObserver(
       Array.from(records[i].removedNodes)
         .filter((node: Node) => node.nodeName === CHAT_FRAME_NAME)
         .some(() => {
-          app = null
+          if (app !== null) {
+            app.dispose()
+            app = null
+          }
           return true
         })
     }
