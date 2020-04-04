@@ -1,7 +1,7 @@
-# YouTube Live Overlayer
+# Chat Overlayer for YouTube™
 
-YouTube Live comment overlayer on stream extension powered by Web Extensions.
-Supported on live, live replay and premiere release comment.
+Chat overlayer extension for YouTube™ powered by Web Extensions.
+Supported on live, live replay and premiere release chat.
 
 ## Support
 
@@ -10,14 +10,14 @@ Supported on live, live replay and premiere release comment.
 ## Usage
 
 1. Install from [extensions store](https://chrome.google.com/webstore/detail/youtube-live-overlayer/hpdlnlpkaigpokddgcfeelaccdlalonh).
-2. View YouTube.
+2. View YouTube™.
 3. Change player mode to theater.
 
 ## Development & Debug
 
 1. Clone this repository.
 2. Install to Chrome by unpackage extension, select `dist` directory.
-3. View YouTube.
+3. View YouTube™.
 4. Change player mode to theater.
 
 ## Author

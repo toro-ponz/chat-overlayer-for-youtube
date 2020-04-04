@@ -7,15 +7,15 @@ import { Mode } from 'components/Mode';
 
 /**
  * @export
- * @class YouTubeLiveOverlayer
+ * @class ChatOverlayerForYouTube
  */
-export class YouTubeLiveOverlayer extends Selector {
+export class ChatOverlayerForYouTube extends Selector {
   /**
    * cookies instance
    *
    * @private
    * @type {Cookies}
-   * @memberof YouTubeLiveOverlayer
+   * @memberof ChatOverlayerForYouTube
    */
   private cookies: Cookies
 
@@ -24,7 +24,7 @@ export class YouTubeLiveOverlayer extends Selector {
    *
    * @private
    * @type {Mode}
-   * @memberof YouTubeLiveOverlayer
+   * @memberof ChatOverlayerForYouTube
    */
   private mode: Mode
 
@@ -33,7 +33,7 @@ export class YouTubeLiveOverlayer extends Selector {
    *
    * @private
    * @type {ChatSelector}
-   * @memberof YouTubeLiveOverlayer
+   * @memberof ChatOverlayerForYouTube
    */
   private chatSelector: ChatSelector
 
@@ -42,7 +42,7 @@ export class YouTubeLiveOverlayer extends Selector {
    *
    * @private
    * @type {ChatAppFrameSelector}
-   * @memberof YouTubeLiveOverlayer
+   * @memberof ChatOverlayerForYouTube
    */
   private chatAppFrameSelector: ChatAppFrameSelector
 
@@ -51,14 +51,14 @@ export class YouTubeLiveOverlayer extends Selector {
    *
    * @private
    * @type {PlayerModeSelector}
-   * @memberof YouTubeLiveOverlayer
+   * @memberof ChatOverlayerForYouTube
    */
   private playerModeSelector: PlayerModeSelector
 
   /**
-   * Creates an instance of YouTubeLiveOverlayer.
+   * Creates an instance of ChatOverlayerForYouTube.
    *
-   * @memberof YouTubeLiveOverlayer
+   * @memberof ChatOverlayerForYouTube
    */
   public constructor() {
     super('body')
@@ -87,7 +87,7 @@ export class YouTubeLiveOverlayer extends Selector {
    * change chat overlay mode
    *
    * @param {boolean} isOverlayMode
-   * @memberof YouTubeLiveOverlayer
+   * @memberof ChatOverlayerForYouTube
    */
   public changeMode(isOverlayMode: boolean): void {
     this.element.classList.toggle(this.mode.class, isOverlayMode)
@@ -98,7 +98,7 @@ export class YouTubeLiveOverlayer extends Selector {
   /**
    * toggle chat overlay mode
    *
-   * @memberof YouTubeLiveOverlayer
+   * @memberof ChatOverlayerForYouTube
    */
   public toggleMode(): void {
     this.changeMode(!this.mode.isOverlay)
@@ -108,12 +108,12 @@ export class YouTubeLiveOverlayer extends Selector {
    * try new instance
    *
    * @static
-   * @returns {(YouTubeLiveOverlayer | null)}
-   * @memberof YouTubeLiveOverlayer
+   * @returns {(ChatOverlayerForYouTube | null)}
+   * @memberof ChatOverlayerForYouTube
    */
-  public static tryNew(): YouTubeLiveOverlayer | null {
+  public static tryNew(): ChatOverlayerForYouTube | null {
     try {
-      return new YouTubeLiveOverlayer()
+      return new ChatOverlayerForYouTube()
     } catch(error) {
       return null
     }

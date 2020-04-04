@@ -1,7 +1,7 @@
-import { YouTubeLiveOverlayer } from 'app/YouTubeLiveOverlayer'
+import { ChatOverlayerForYouTube } from 'app/ChatOverlayerForYouTube'
 
 // extention instance
-let app: YouTubeLiveOverlayer | null = null
+let app: ChatOverlayerForYouTube | null = null
 
 // observe name
 const CHAT_FRAME_NAME = 'YTD-LIVE-CHAT-FRAME';
@@ -14,7 +14,7 @@ const observer: MutationObserver = new MutationObserver(
       Array.from(records[i].addedNodes)
         .filter((node: Node) => node.nodeName === CHAT_FRAME_NAME)
         .some(() => {
-          app = YouTubeLiveOverlayer.tryNew()
+          app = ChatOverlayerForYouTube.tryNew()
           return true
         })
 
