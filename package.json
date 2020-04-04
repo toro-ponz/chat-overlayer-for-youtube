@@ -1,6 +1,6 @@
 {
-  "name": "app-live-overlayer",
-  "version": "1.0.0",
+  "name": "chat-overlayer-for-youtube",
+  "version": "0.9.3",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^9.1.1",
