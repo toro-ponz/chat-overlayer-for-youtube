@@ -17,9 +17,11 @@ body.overlay-mode {
 
     // superchat
     yt-live-chat-ticker-renderer {
+      background: transparent !important;
+      padding: 3px 0 !important;
 
       #items.yt-live-chat-ticker-renderer {
-        padding: 0 24px 0px 24px !important;
+        padding: 0 !important;
       }
 
       // scroll arrow
