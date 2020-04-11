@@ -76,6 +76,24 @@ body.overlay-mode {
       }
     }
 
+    // engagement card
+    yt-live-chat-viewer-engagement-message-renderer {
+      #card {
+        background: transparent;
+        border: 1px solid lightgray;
+
+        #message {
+          color: lightgray;
+        }
+
+        #action-button {
+          yt-button-renderer {
+            color: cadetblue;
+          }
+        }
+      }
+    }
+
     // chat input panel
     iron-pages {
       &#panel-pages {
