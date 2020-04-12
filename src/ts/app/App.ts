@@ -263,18 +263,6 @@ export class App extends Selector {
   }
 
   /**
-   * toggle overlay mode
-   *
-   * @private
-   * @memberof App
-   */
-  private toggleOverlayMode(): void {
-    const isOverlayMode = this.element.classList.contains(this.overlayMode.class)
-
-    this.changeOverlayMode(!isOverlayMode)
-  }
-
-  /**
    * change player size listener
    *
    * @readonly
