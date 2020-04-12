@@ -46,7 +46,7 @@ export class PlayerSelector extends Selector {
    */
   public setOndbclickListener(listener: () => void): void {
     this.htmlElements.forEach((element) => {
-      element.addEventListener('ondblclick', listener)
+      element.addEventListener('dblclick', listener)
     })
   }
 }

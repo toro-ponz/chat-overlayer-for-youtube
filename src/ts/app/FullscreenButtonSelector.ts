@@ -23,7 +23,7 @@ export class FullscreenButtonSelector extends Selector {
    */
   public setOnclickListener(listener: () => void): void {
     this.htmlElements.forEach((element) => {
-      element.addEventListener('onclick', listener)
+      element.addEventListener('click', listener)
     })
   }
 }
