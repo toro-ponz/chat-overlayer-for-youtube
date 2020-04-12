@@ -26,14 +26,40 @@ body.overlay-mode {
       z-index: 21;
       top: 0;
       left: 0;
+      right: auto;
       margin: 0;
       width: auto;
       min-height: 0px;
 
+      // overlay on left
+      &.overlay-left {
+        top: 0;
+        left: 0;
+        right: auto;
+      }
+
+      // overlay on right
+      &.overlay-right {
+        top: 0;
+        left: auto;
+        right: 0;
+      }
+
       // overlay on default player size
       &.player-default {
         top: var(--ytd-margin-6x);
-        left: var(--ytd-margin-6x);
+
+        // overlay on left
+        &.overlay-left {
+          left: var(--ytd-margin-6x);
+          right: auto;
+        }
+
+        // overlay on right
+        &.overlay-right {
+          left: auto;
+          right: var(--ytd-margin-6x);
+        }
       }
 
       // chat collapsed

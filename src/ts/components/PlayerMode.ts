@@ -1,16 +1,16 @@
 /**
- * manage PlayerMode class
+ * PlayerModeManager class
  *
  * @export
- * @class PlayerMode
+ * @class PlayerModeManager
  */
-export class PlayerMode {
+export class PlayerModeManager {
   /**
    * get player is default mode
    *
    * @readonly
    * @type {boolean}
-   * @memberof PlayerMode
+   * @memberof PlayerModeManager
    */
   public get isDefault(): boolean {
     const element = this.element
@@ -27,13 +27,13 @@ export class PlayerMode {
    *
    * @readonly
    * @type {boolean}
-   * @memberof PlayerMode
+   * @memberof PlayerModeManager
    */
   public get isTheater(): boolean {
     const element = this.element
 
     if (element === null) {
-      return true
+      return false
     }
 
     return element.classList.contains(PlayerModeClass.THEATER)
@@ -44,13 +44,13 @@ export class PlayerMode {
    *
    * @readonly
    * @type {boolean}
-   * @memberof PlayerMode
+   * @memberof PlayerModeManager
    */
   public get isFullscreen(): boolean {
     const element = this.element
 
     if (element === null) {
-      return true
+      return false
     }
 
     return element.classList.contains(PlayerModeClass.FULLSCREEN)
@@ -61,7 +61,7 @@ export class PlayerMode {
    *
    * @readonly
    * @type {HTMLElement|null}
-   * @memberof PlayerMode
+   * @memberof PlayerModeManager
    */
   private get element(): HTMLElement|null {
     return document.getElementById('chat')
@@ -72,9 +72,9 @@ export class PlayerMode {
  * player mode enum
  *
  * @export
- * @enum PlayerModes
+ * @enum PlayerMode
  */
-export const enum PlayerModes {
+export const enum PlayerMode {
   DEFAULT,
   THEATER,
   FULLSCREEN,
@@ -84,7 +84,7 @@ export const enum PlayerModes {
  * player mode enum
  *
  * @export
- * @enum PlayerModes
+ * @enum PlayerModeClass
  */
 export const enum PlayerModeClass {
   DEFAULT = 'player-default',

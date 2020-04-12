@@ -1,6 +1,7 @@
+import { AreaMode, AreaModeClass, AreaModeManager } from 'components/AreaMode'
+import { PlayerMode, PlayerModeClass, PlayerModeManager } from 'components/PlayerMode'
 import { PlayerSelector } from 'app/PlayerSelector'
 import { Selector } from 'components/Selector'
-import { PlayerMode, PlayerModes, PlayerModeClass } from 'components/PlayerMode'
 
 /**
  * @export
@@ -9,15 +10,24 @@ import { PlayerMode, PlayerModes, PlayerModeClass } from 'components/PlayerMode'
  */
 export class ChatSelector extends Selector {
   /**
-   * player mode instance
-   *
-   * @private
-   * @type {PlayerMode}
-   * @memberof ChatSelector
-   */
-  private playerMode: PlayerMode
+  * area mode manager instance
+  *
+  * @private
+  * @type {AreaModeManager}
+  * @memberof ChatSelector
+  */
+ private areaModeManager: AreaModeManager
 
-  /**
+ /**
+ * player mode manager instance
+ *
+ * @private
+ * @type {PlayerModeManager}
+ * @memberof ChatSelector
+ */
+private playerModeManager: PlayerModeManager
+
+ /**
    * player selector instance
    *
    * @private
@@ -34,7 +44,8 @@ export class ChatSelector extends Selector {
   public constructor() {
     super('ytd-live-chat-frame')
 
-    this.playerMode = new PlayerMode()
+    this.areaModeManager = new AreaModeManager()
+    this.playerModeManager = new PlayerModeManager()
     this.playerSelector = new PlayerSelector()
 
     this.initialize()
@@ -50,6 +61,8 @@ export class ChatSelector extends Selector {
     window.onresize = () => {
       this.setHeight()
     }
+    this.setAreaMode(AreaMode.LEFT)
+    this.setAreaKey()
   }
 
   /**
@@ -58,19 +71,19 @@ export class ChatSelector extends Selector {
    * @param playerMode player mode instance
    * @memberof ChatSelector
    */
-  public setPlayerMode(playerMode: PlayerModes): void {
+  public setPlayerMode(playerMode: PlayerMode): void {
     switch (playerMode) {
-      case PlayerModes.DEFAULT:
+      case PlayerMode.DEFAULT:
         this.element.classList.add(PlayerModeClass.DEFAULT)
         this.element.classList.remove(PlayerModeClass.THEATER)
         this.element.classList.remove(PlayerModeClass.FULLSCREEN)
         break
-      case PlayerModes.THEATER:
+      case PlayerMode.THEATER:
         this.element.classList.remove(PlayerModeClass.DEFAULT)
         this.element.classList.add(PlayerModeClass.THEATER)
         this.element.classList.remove(PlayerModeClass.FULLSCREEN)
         break
-      case PlayerModes.FULLSCREEN:
+      case PlayerMode.FULLSCREEN:
         this.element.classList.remove(PlayerModeClass.DEFAULT)
         this.element.classList.remove(PlayerModeClass.THEATER)
         this.element.classList.add(PlayerModeClass.FULLSCREEN)
@@ -83,6 +96,27 @@ export class ChatSelector extends Selector {
   }
 
   /**
+   * set area mode class
+   *
+   * @param areaMode
+   * @memberof ChatSelector
+   */
+  public setAreaMode(areaMode: AreaMode): void {
+    switch (areaMode) {
+      case AreaMode.LEFT:
+        this.element.classList.add(AreaModeClass.LEFT)
+        this.element.classList.remove(AreaModeClass.RIGHT)
+        break
+      case AreaMode.RIGHT:
+        this.element.classList.remove(AreaModeClass.LEFT)
+        this.element.classList.add(AreaModeClass.RIGHT)
+        break
+      default:
+        break
+    }
+  }
+
+  /**
    * set height calculate from player height
    *
    * @memberof ChatSelector
@@ -92,7 +126,7 @@ export class ChatSelector extends Selector {
     // TODO: fix it.
     setTimeout(() => {
       let chatHeight = this.playerSelector.height
-      if (this.playerMode.isFullscreen) {
+      if (this.playerModeManager.isFullscreen) {
         chatHeight -= 60
       } else {
         chatHeight -= 45
@@ -106,7 +140,6 @@ export class ChatSelector extends Selector {
     }, 500)
   }
 
-
   /**
    * set player ondbclick event function
    *
@@ -115,5 +148,26 @@ export class ChatSelector extends Selector {
    */
   public setPlayerOndbclick(callback: () => void): void {
     this.playerSelector.setOndbclick(callback)
+  }
+
+  /**
+   * set area key event function
+   *
+   * @private
+   * @memberof ChatSelector
+   */
+  private setAreaKey(): void {
+    window.addEventListener('keydown', (e: KeyboardEvent) => {
+      // keycode of [a]
+      if (e.keyCode !== 65) {
+        return
+      }
+
+      if (this.areaModeManager.isLeft) {
+        this.setAreaMode(AreaMode.RIGHT)
+      } else if (this.areaModeManager.isRight) {
+        this.setAreaMode(AreaMode.LEFT)
+      }
+    })
   }
 }
