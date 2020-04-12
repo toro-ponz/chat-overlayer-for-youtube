@@ -1,16 +1,16 @@
 /**
- * manage Mode class
+ * manage OverlayMode class
  *
  * @export
- * @class Mode
+ * @class OverlayMode
  */
-export class Mode {
+export class OverlayMode {
   /**
    * class name attaches when overlay mode enabled
    *
    * @private
    * @type {string}
-   * @memberof Mode
+   * @memberof OverlayMode
    */
   private overlayClass: string = 'overlay-mode'
 
@@ -19,7 +19,7 @@ export class Mode {
    *
    * @readonly
    * @type {boolean}
-   * @memberof Mode
+   * @memberof OverlayMode
    */
   public get isOverlay(): boolean {
     return document.body.classList.contains(this.overlayClass)
@@ -30,7 +30,7 @@ export class Mode {
    *
    * @readonly
    * @type {string}
-   * @memberof Mode
+   * @memberof OverlayMode
    */
   public get class(): string {
     return this.overlayClass

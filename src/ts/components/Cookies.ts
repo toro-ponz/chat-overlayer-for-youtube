@@ -42,7 +42,7 @@ export class Cookies {
    * @memberof Cookies
    */
   public getValue(name: string): string {
-    const cookie = this.cookies.filter((cookie) => {
+    const cookie = this.getCookies().filter((cookie) => {
       return cookie.key === name
     })[0]
 

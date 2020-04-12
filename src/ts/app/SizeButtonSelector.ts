@@ -2,14 +2,14 @@ import { Selector } from 'components/Selector'
 
 /**
  * @export
- * @class PlayerModeSelector
+ * @class SizeButtonSelector
  * @extends {Selector}
  */
-export class PlayerModeSelector extends Selector {
+export class SizeButtonSelector extends Selector {
   /**
-   * Creates an instance of PlayerModeSelector.
+   * Creates an instance of SizeButtonSelector.
    *
-   * @memberof PlayerModeSelector
+   * @memberof SizeButtonSelector
    */
   public constructor() {
     super('.ytp-size-button')
@@ -19,11 +19,18 @@ export class PlayerModeSelector extends Selector {
    * set onclick event function
    *
    * @param {() => void} callback
-   * @memberof PlayerModeSelector
+   * @memberof SizeButtonSelector
    */
   public setOnclick(callback: () => void): void {
     this.htmlElements.forEach((element) => {
       element.onclick = callback
-    });
+    })
+
+    window.addEventListener('keydown', (e: KeyboardEvent) => {
+      // keycode of [t]
+      if (e.keyCode === 84) {
+        callback()
+      }
+    })
   }
 }

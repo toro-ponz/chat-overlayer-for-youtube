@@ -30,6 +30,12 @@ body.overlay-mode {
       width: auto;
       min-height: 0px;
 
+      // overlay on default player size
+      &.player-default {
+        top: var(--ytd-margin-6x);
+        left: var(--ytd-margin-6x);
+      }
+
       // chat collapsed
       &[collapsed] {
 
