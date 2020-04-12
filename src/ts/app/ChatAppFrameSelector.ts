@@ -22,7 +22,7 @@ export class ChatAppFrameSelector extends Selector {
    * @param {boolean} isOverlayMode
    * @memberof ChatAppFrameSelector
    */
-  public changeMode(overlayClass: string, isOverlayMode: boolean): void {
+  public changeOverlayMode(overlayClass: string, isOverlayMode: boolean): void {
     this.innerDocument.body.classList.toggle(overlayClass, isOverlayMode)
   }
 

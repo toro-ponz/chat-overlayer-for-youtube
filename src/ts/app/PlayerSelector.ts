@@ -37,4 +37,16 @@ export class PlayerSelector extends Selector {
   public get height() : number {
     return this.playerContainerSelector.htmlElement.clientHeight
   }
+
+  /**
+   * set ondbclick event function
+   *
+   * @param {() => void} callback
+   * @memberof PlayerSelector
+   */
+  public setOndbclick(callback: () => void): void {
+    this.htmlElements.forEach((element) => {
+      element.ondblclick = callback
+    })
+  }
 }

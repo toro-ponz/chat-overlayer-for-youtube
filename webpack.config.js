@@ -1,12 +1,16 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtracktTextPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
     app: [
       './src/ts/app.ts',
       './src/scss/app.scss'
+    ],
+    background: [
+      './src/ts/background.ts'
     ],
     chat: [
       './src/ts/chat.ts',
@@ -21,8 +25,9 @@ module.exports = {
     extensions: ['.ts'],
     alias: {
       app: path.resolve(__dirname, './src/ts/app'),
+      background: path.resolve(__dirname, './src/ts/background'),
       chat: path.resolve(__dirname, './src/ts/chat'),
-      components: path.resolve(__dirname, './src/ts/components'),
+      components: path.resolve(__dirname, './src/ts/components')
     }
   },
   stats: {
@@ -62,6 +67,12 @@ module.exports = {
     }),
     new ExtracktTextPlugin({
       filename: '../css/[name].css'
+    }),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: [
+        path.join(__dirname, 'dist/js'),
+        path.join(__dirname, 'dist/css')
+      ]
     })
   ]
 }

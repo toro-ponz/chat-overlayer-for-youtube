@@ -3,6 +3,7 @@ body.overlay-mode {
 
   // chat app on overlay mode
   yt-live-chat-app {
+    min-height: auto !important;
 
     // chat header
     yt-live-chat-header-renderer {

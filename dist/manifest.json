@@ -13,6 +13,12 @@
     "96": "icons/96.png",
     "128": "icons/128.png"
   },
+  "background": {
+    "scripts": [
+      "js/background.js"
+    ],
+    "persistent": false
+  },
   "content_scripts": [
     {
       "css": [
@@ -41,7 +47,15 @@
       "all_frames": true
     }
   ],
+  "page_action":{
+    "default_icon": {
+      "16": "icons/16.png"
+    },
+    "default_title": "disable overlay mode"
+  },
   "permissions": [
+    "tabs",
+    "declarativeContent",
     "https://www.youtube.com/*"
   ]
 }
