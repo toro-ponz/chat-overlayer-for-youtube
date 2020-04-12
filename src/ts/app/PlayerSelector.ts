@@ -44,9 +44,9 @@ export class PlayerSelector extends Selector {
    * @param {() => void} callback
    * @memberof PlayerSelector
    */
-  public setOndbclick(callback: () => void): void {
+  public setOndbclickListener(listener: () => void): void {
     this.htmlElements.forEach((element) => {
-      element.ondblclick = callback
+      element.addEventListener('ondblclick', listener)
     })
   }
 }

@@ -21,16 +21,9 @@ export class SizeButtonSelector extends Selector {
    * @param {() => void} callback
    * @memberof SizeButtonSelector
    */
-  public setOnclick(callback: () => void): void {
+  public setOnclick(listener: () => void): void {
     this.htmlElements.forEach((element) => {
-      element.onclick = callback
-    })
-
-    window.addEventListener('keydown', (e: KeyboardEvent) => {
-      // keycode of [t]
-      if (e.keyCode === 84) {
-        callback()
-      }
+      element.addEventListener('onclick', listener)
     })
   }
 }

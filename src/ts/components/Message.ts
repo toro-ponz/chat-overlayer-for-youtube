@@ -7,11 +7,11 @@ export class MessageManager {
   /**
    * set message proceed listener
    *
-   * @param {(Message) => void} callback
+   * @param {(Message) => void} listener
    * @memberof MessageManager
    */
-  public setListener(callback: (message: Message) => void): void {
-    chrome.runtime.onMessage.addListener(callback)
+  public setListener(listener: (message: Message) => void): void {
+    chrome.runtime.onMessage.addListener(listener)
   }
 
   /**
