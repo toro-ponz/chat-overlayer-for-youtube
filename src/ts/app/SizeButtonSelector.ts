@@ -23,7 +23,7 @@ export class SizeButtonSelector extends Selector {
    */
   public setOnclick(listener: () => void): void {
     this.htmlElements.forEach((element) => {
-      element.addEventListener('onclick', listener)
+      element.addEventListener('click', listener)
     })
   }
 }
