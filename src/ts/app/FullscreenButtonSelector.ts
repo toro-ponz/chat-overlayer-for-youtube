@@ -21,16 +21,9 @@ export class FullscreenButtonSelector extends Selector {
    * @param {() => void} callback
    * @memberof FullscreenButtonSelector
    */
-  public setOnclick(callback: () => void): void {
+  public setOnclickListener(listener: () => void): void {
     this.htmlElements.forEach((element) => {
-      element.onclick = callback
-    })
-
-    window.addEventListener('keydown', (e: KeyboardEvent) => {
-      // keycode of [f]
-      if (e.keyCode === 70) {
-        callback()
-      }
+      element.addEventListener('onclick', listener)
     })
   }
 }

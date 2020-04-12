@@ -62,7 +62,6 @@ private playerModeManager: PlayerModeManager
       this.setHeight()
     }
     this.setAreaMode(AreaMode.LEFT)
-    this.setAreaKey()
   }
 
   /**
@@ -117,6 +116,19 @@ private playerModeManager: PlayerModeManager
   }
 
   /**
+   * toggle area mode
+   *
+   * @memberof ChatSelector
+   */
+  public toggleAreaMode(): void {
+    if (this.areaModeManager.isLeft) {
+      this.setAreaMode(AreaMode.RIGHT)
+    } else if (this.areaModeManager.isRight) {
+      this.setAreaMode(AreaMode.LEFT)
+    }
+  }
+
+  /**
    * set height calculate from player height
    *
    * @memberof ChatSelector
@@ -143,31 +155,10 @@ private playerModeManager: PlayerModeManager
   /**
    * set player ondbclick event function
    *
-   * @param {() => void} callback
+   * @param {() => void} listener
    * @memberof ChatSelector
    */
-  public setPlayerOndbclick(callback: () => void): void {
-    this.playerSelector.setOndbclick(callback)
-  }
-
-  /**
-   * set area key event function
-   *
-   * @private
-   * @memberof ChatSelector
-   */
-  private setAreaKey(): void {
-    window.addEventListener('keydown', (e: KeyboardEvent) => {
-      // keycode of [a]
-      if (e.keyCode !== 65) {
-        return
-      }
-
-      if (this.areaModeManager.isLeft) {
-        this.setAreaMode(AreaMode.RIGHT)
-      } else if (this.areaModeManager.isRight) {
-        this.setAreaMode(AreaMode.LEFT)
-      }
-    })
+  public setPlayerOndbclickListener(listener: () => void): void {
+    this.playerSelector.setOndbclickListener(listener)
   }
 }
