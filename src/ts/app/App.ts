@@ -6,7 +6,7 @@ import { Cookies } from 'components/Cookies'
 import { MessageManager, Message, MessageType } from 'components/Message'
 import { OverlayMode } from 'components/OverlayMode'
 import { Page } from 'components/Page'
-import { PlayerMode, PlayerModes } from 'components/PlayerMode'
+import { PlayerMode, PlayerModeManager } from 'components/PlayerMode'
 import { Selector } from 'components/Selector'
 import { Storage } from 'components/Storage'
 
@@ -40,7 +40,7 @@ export class App extends Selector {
    * @type {PlayerMode}
    * @memberof App
    */
-  private playerMode: PlayerMode
+  private playerModeManager: PlayerModeManager
 
   /**
    * storage instance
@@ -116,7 +116,7 @@ export class App extends Selector {
     this.cookies = new Cookies()
     this.overlayMode = new OverlayMode()
     this.page = new Page()
-    this.playerMode = new PlayerMode()
+    this.playerModeManager = new PlayerModeManager()
     this.storage = new Storage()
     this.messageManager = new MessageManager()
 
@@ -126,23 +126,23 @@ export class App extends Selector {
     this.fullscreenButtonSelector = new FullscreenButtonSelector()
 
     const sizeChangeFunction = () => {
-      if (this.playerMode.isDefault) {
-        this.chatSelector.setPlayerMode(PlayerModes.THEATER)
+      if (this.playerModeManager.isDefault) {
+        this.chatSelector.setPlayerMode(PlayerMode.THEATER)
       } else {
-        this.chatSelector.setPlayerMode(PlayerModes.DEFAULT)
+        this.chatSelector.setPlayerMode(PlayerMode.DEFAULT)
       }
     }
     const fullscreenChangeFunction = () => {
-      if (this.playerMode.isFullscreen) {
+      if (this.playerModeManager.isFullscreen) {
         this.cookies.update()
         console.log(this.cookies.isWide)
         if (this.cookies.isWide) {
-          this.chatSelector.setPlayerMode(PlayerModes.THEATER)
+          this.chatSelector.setPlayerMode(PlayerMode.THEATER)
         } else {
-          this.chatSelector.setPlayerMode(PlayerModes.DEFAULT)
+          this.chatSelector.setPlayerMode(PlayerMode.DEFAULT)
         }
       } else {
-        this.chatSelector.setPlayerMode(PlayerModes.FULLSCREEN)
+        this.chatSelector.setPlayerMode(PlayerMode.FULLSCREEN)
       }
     }
     this.sizeButtonSelector.setOnclick(sizeChangeFunction)
@@ -162,9 +162,9 @@ export class App extends Selector {
     this.refreshOverlayMode()
 
     if (this.cookies.isWide) {
-      this.chatSelector.setPlayerMode(PlayerModes.THEATER)
+      this.chatSelector.setPlayerMode(PlayerMode.THEATER)
     } else {
-      this.chatSelector.setPlayerMode(PlayerModes.DEFAULT)
+      this.chatSelector.setPlayerMode(PlayerMode.DEFAULT)
     }
 
     this.messageManager.setListener((message: Message) => {

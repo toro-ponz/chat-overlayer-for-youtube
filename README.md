@@ -13,6 +13,10 @@ Supported on live, live replay and premiere release chat.
 2. View YouTube™.
 3. Change player mode to theater.
 
+## Keys
+
+* [a] ... toggle chat area, overlay on left or on right.
+
 ## Development & Debug
 
 1. Clone this repository.
