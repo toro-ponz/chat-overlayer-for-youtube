@@ -210,6 +210,10 @@ export class App extends Selector {
         case 70:
           this.fullscreenChangeListener()
           break
+        // o
+        case 79:
+          this.toggleOverlayMode()
+          break
         // t
         case 84:
           this.sizeChangeListener()
@@ -260,6 +264,18 @@ export class App extends Selector {
       }
     }
     this.messageManager.send(message)
+  }
+
+  /**
+   * toggle overlay mode
+   *
+   * @private
+   * @memberof App
+   */
+  private toggleOverlayMode(): void {
+    const isOverlayMode = this.element.classList.contains(this.overlayMode.class)
+
+    this.changeOverlayMode(!isOverlayMode)
   }
 
   /**

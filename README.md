@@ -16,6 +16,7 @@ Supported on live, live replay and premiere release chat.
 ## Keys
 
 * [a] ... toggle chat area, overlay on left or on right.
+* [o] ... toggle overlay mode, on or off.
 
 ## Development & Debug
 
