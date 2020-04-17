@@ -69,6 +69,11 @@ export class Background extends Selector {
             this.page.updateMode(tabs[0], isOverlayMode, () => {})
           })
           break
+        case MessageType.SET_OVERLAY_MODE:
+        case MessageType.TOGGLE_CHAT_INPUT_ENABLED:
+        case MessageType.KEY_DOWN:
+          this.messageManager.sendToActiveTab(message)
+          break
         default:
           break
       }

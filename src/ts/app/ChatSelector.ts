@@ -1,7 +1,8 @@
-import { AreaMode, AreaModeClass, AreaModeManager } from 'components/AreaMode'
-import { PlayerMode, PlayerModeClass, PlayerModeManager } from 'components/PlayerMode'
+import { AreaMode, AreaModeManager } from 'components/AreaMode'
+import { PlayerMode, PlayerModeManager } from 'components/PlayerMode'
 import { PlayerSelector } from 'app/PlayerSelector'
 import { Selector } from 'components/Selector'
+import { Cookies } from 'components/Cookies'
 
 /**
  * @export
@@ -9,6 +10,15 @@ import { Selector } from 'components/Selector'
  * @extends {Selector}
  */
 export class ChatSelector extends Selector {
+  /**
+   * cookies instance
+   *
+   * @private
+   * @type {Cookies}
+   * @memberof App
+   */
+  private cookies: Cookies
+
   /**
   * area mode manager instance
   *
@@ -44,8 +54,12 @@ private playerModeManager: PlayerModeManager
   public constructor() {
     super('ytd-live-chat-frame')
 
-    this.areaModeManager = new AreaModeManager()
-    this.playerModeManager = new PlayerModeManager()
+    this.cookies = new Cookies()
+
+    const playerMode = this.cookies.isWide ? PlayerMode.THEATER : PlayerMode.DEFAULT
+
+    this.areaModeManager = new AreaModeManager(this.htmlElement)
+    this.playerModeManager = new PlayerModeManager(this.htmlElement, playerMode)
     this.playerSelector = new PlayerSelector()
 
     this.initialize()
@@ -61,7 +75,6 @@ private playerModeManager: PlayerModeManager
     window.onresize = () => {
       this.setHeight()
     }
-    this.setAreaMode(AreaMode.LEFT)
   }
 
   /**
@@ -71,26 +84,7 @@ private playerModeManager: PlayerModeManager
    * @memberof ChatSelector
    */
   public setPlayerMode(playerMode: PlayerMode): void {
-    switch (playerMode) {
-      case PlayerMode.DEFAULT:
-        this.element.classList.add(PlayerModeClass.DEFAULT)
-        this.element.classList.remove(PlayerModeClass.THEATER)
-        this.element.classList.remove(PlayerModeClass.FULLSCREEN)
-        break
-      case PlayerMode.THEATER:
-        this.element.classList.remove(PlayerModeClass.DEFAULT)
-        this.element.classList.add(PlayerModeClass.THEATER)
-        this.element.classList.remove(PlayerModeClass.FULLSCREEN)
-        break
-      case PlayerMode.FULLSCREEN:
-        this.element.classList.remove(PlayerModeClass.DEFAULT)
-        this.element.classList.remove(PlayerModeClass.THEATER)
-        this.element.classList.add(PlayerModeClass.FULLSCREEN)
-        break
-      default:
-        break
-    }
-
+    this.playerModeManager.setMode(playerMode)
     this.setHeight()
   }
 
@@ -101,18 +95,7 @@ private playerModeManager: PlayerModeManager
    * @memberof ChatSelector
    */
   public setAreaMode(areaMode: AreaMode): void {
-    switch (areaMode) {
-      case AreaMode.LEFT:
-        this.element.classList.add(AreaModeClass.LEFT)
-        this.element.classList.remove(AreaModeClass.RIGHT)
-        break
-      case AreaMode.RIGHT:
-        this.element.classList.remove(AreaModeClass.LEFT)
-        this.element.classList.add(AreaModeClass.RIGHT)
-        break
-      default:
-        break
-    }
+    this.areaModeManager.setMode(areaMode)
   }
 
   /**
@@ -121,11 +104,7 @@ private playerModeManager: PlayerModeManager
    * @memberof ChatSelector
    */
   public toggleAreaMode(): void {
-    if (this.areaModeManager.isLeft) {
-      this.setAreaMode(AreaMode.RIGHT)
-    } else if (this.areaModeManager.isRight) {
-      this.setAreaMode(AreaMode.LEFT)
-    }
+    this.areaModeManager.toggleMode()
   }
 
   /**
@@ -160,5 +139,44 @@ private playerModeManager: PlayerModeManager
    */
   public setPlayerOndbclickListener(listener: () => void): void {
     this.playerSelector.setOndbclickListener(listener)
+  }
+
+  /**
+   * change player size listener
+   *
+   * @readonly
+   * @returns {() => void}
+   * @memberof App
+   */
+  public get sizeChangeListener(): () => void {
+    return () => {
+      if (this.playerModeManager.isDefault) {
+        this.setPlayerMode(PlayerMode.THEATER)
+      } else {
+        this.setPlayerMode(PlayerMode.DEFAULT)
+      }
+    }
+  }
+
+  /**
+   * change fullscreen mode listener
+   *
+   * @readonly
+   * @returns {() => void}
+   * @memberof App
+   */
+  public get fullscreenChangeListener(): () => void {
+    return () => {
+      if (this.playerModeManager.isFullscreen) {
+        this.cookies.update()
+        if (this.cookies.isWide) {
+          this.setPlayerMode(PlayerMode.THEATER)
+        } else {
+          this.setPlayerMode(PlayerMode.DEFAULT)
+        }
+      } else {
+        this.setPlayerMode(PlayerMode.FULLSCREEN)
+      }
+    }
   }
 }

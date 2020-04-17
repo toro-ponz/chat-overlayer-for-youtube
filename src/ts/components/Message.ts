@@ -47,8 +47,10 @@ export class MessageManager {
  * @interface MessageType
  */
 export enum MessageType {
-  SET_OVERLAY_MODE = 'set-overlay-mode',
-  UPDATE_ICON = 'update-icon'
+  SET_OVERLAY_MODE,
+  TOGGLE_CHAT_INPUT_ENABLED,
+  UPDATE_ICON,
+  KEY_DOWN,
 }
 
 /**

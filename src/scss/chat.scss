@@ -79,17 +79,23 @@ body.overlay-mode {
       }
     }
 
-    // engagement card
+    // engagement
     yt-live-chat-viewer-engagement-message-renderer {
+
+      // engagement card
       #card {
         background: transparent;
         border: 1px solid lightgray;
 
+        // engagement message
         #message {
           color: lightgray;
         }
 
+        // detail link
         #action-button {
+
+          // detail link button
           yt-button-renderer {
             color: cadetblue;
           }
@@ -97,10 +103,78 @@ body.overlay-mode {
       }
     }
 
-    // chat input panel
-    iron-pages {
-      &#panel-pages {
+    // chat input area
+    yt-live-chat-message-input-renderer {
+      background: transparent;
+      color: lightgray;
+      padding: 7px;
+      border-top: 1px solid lightgray;
+
+      // disabled input area
+      &.disabled-input-renderer {
         display: none;
+      }
+
+      // top of chat input area
+      #top {
+        margin-top: 4px;
+
+        // chat auther
+        yt-live-chat-author-chip {
+          display: none;
+
+          // chat author name
+          #author-name {
+            color: lightgray;
+          }
+        }
+
+        // chat input
+        yt-live-chat-text-input-field-renderer {
+          color: white;
+          margin-top: 0 !important;
+
+          // chat placeholder
+          #label {
+            color: darkgray;
+          }
+        }
+      }
+
+      // chat text length
+      #count {
+        color: lightgray;
+      }
+
+      // send chat button
+      #send-button {
+
+        // send chat icon
+        yt-icon {
+          color: #2196f3;
+        }
+      }
+
+      // pickeers
+      #picker-buttons {
+
+        // emoticon
+        #emoji {
+
+          // emoticon icon
+          yt-icon {
+            color: var(--yt-live-chat-monetization-button-glow, gold);
+          }
+        }
+
+        // superchat button
+        #product-picker {
+
+          // superchat icon
+          yt-icon {
+            color: #c4302b;
+          }
+        }
       }
     }
   }
