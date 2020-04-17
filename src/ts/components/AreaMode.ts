@@ -6,6 +6,60 @@
  */
 export class AreaModeManager {
   /**
+   * target element
+   *
+   * @private
+   * @type {HTMLElement}
+   * @memberof AreaModeManager
+   */
+  private element: HTMLElement
+
+  /**
+   * Creates an instance of AreaModeManager.
+   *
+   * @param {HTMLElement} element
+   * @memberof AreaModeManager
+   */
+  public constructor(element: HTMLElement, defaultMode: AreaMode = AreaMode.LEFT) {
+    this.element = element
+    this.setMode(defaultMode)
+  }
+
+  /**
+   * set area mode class
+   *
+   * @param areaMode
+   * @memberof AreaModeManager
+   */
+  public setMode(areaMode: AreaMode): void {
+    switch (areaMode) {
+      case AreaMode.LEFT:
+        this.element.classList.add(AreaModeClass.LEFT)
+        this.element.classList.remove(AreaModeClass.RIGHT)
+        break
+      case AreaMode.RIGHT:
+        this.element.classList.remove(AreaModeClass.LEFT)
+        this.element.classList.add(AreaModeClass.RIGHT)
+        break
+      default:
+        break
+    }
+  }
+
+  /**
+   * toggle area mode class
+   *
+   * @memberof AreaModeManager
+   */
+  public toggleMode(): void {
+    if (this.isLeft) {
+      this.setMode(AreaMode.RIGHT)
+    } else if (this.isRight) {
+      this.setMode(AreaMode.LEFT)
+    }
+  }
+
+  /**
    * get is left area mode
    *
    * @readonly
@@ -13,13 +67,7 @@ export class AreaModeManager {
    * @memberof AreaModeManager
    */
   public get isLeft(): boolean {
-    const element = this.element
-
-    if (element === null) {
-      return true
-    }
-
-    return element.classList.contains(AreaModeClass.LEFT)
+    return this.element.classList.contains(AreaModeClass.LEFT)
   }
 
   /**
@@ -30,24 +78,7 @@ export class AreaModeManager {
    * @memberof AreaModeManager
    */
   public get isRight(): boolean {
-    const element = this.element
-
-    if (element === null) {
-      return false
-    }
-
-    return element.classList.contains(AreaModeClass.RIGHT)
-  }
-
-  /**
-   * get chat element
-   *
-   * @readonly
-   * @type {HTMLElement|null}
-   * @memberof AreaModeManager
-   */
-  private get element(): HTMLElement|null {
-    return document.getElementById('chat')
+    return this.element.classList.contains(AreaModeClass.RIGHT)
   }
 }
 

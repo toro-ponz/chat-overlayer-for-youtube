@@ -1,11 +1,8 @@
 import { ChatSelector } from 'app/ChatSelector'
-import { ChatAppFrameSelector } from 'app/ChatAppFrameSelector'
 import { FullscreenButtonSelector } from 'app/FullscreenButtonSelector'
 import { SizeButtonSelector } from 'app/SizeButtonSelector'
-import { Cookies } from 'components/Cookies'
 import { MessageManager, Message, MessageType } from 'components/Message'
-import { OverlayMode } from 'components/OverlayMode'
-import { PlayerMode, PlayerModeManager } from 'components/PlayerMode'
+import { OverlayModeManager, OverlayMode } from 'components/OverlayMode'
 import { Selector } from 'components/Selector'
 import { Storage } from 'components/Storage'
 
@@ -14,15 +11,6 @@ import { Storage } from 'components/Storage'
  * @class App
  */
 export class App extends Selector {
-  /**
-   * cookies instance
-   *
-   * @private
-   * @type {Cookies}
-   * @memberof App
-   */
-  private cookies: Cookies
-
   /**
    * message manager instance
    *
@@ -33,22 +21,13 @@ export class App extends Selector {
   private messageManager: MessageManager
 
   /**
-   * overlay mode instance
+   * overlay mode manager instance
    *
    * @private
-   * @type {OverlayMode}
+   * @type {OverlayModeManager}
    * @memberof App
    */
-  private overlayMode: OverlayMode
-
-  /**
-   * player mode instance
-   *
-   * @private
-   * @type {PlayerMode}
-   * @memberof App
-   */
-  private playerModeManager: PlayerModeManager
+  private overlayModeManager: OverlayModeManager
 
   /**
    * storage instance
@@ -67,15 +46,6 @@ export class App extends Selector {
    * @memberof App
    */
   private chatSelector: ChatSelector
-
-  /**
-   * chat app frame selector instance
-   *
-   * @private
-   * @type {ChatAppFrameSelector}
-   * @memberof App
-   */
-  private chatAppFrameSelector: ChatAppFrameSelector
 
   /**
    * fullscreen button selector instance
@@ -103,14 +73,11 @@ export class App extends Selector {
   public constructor() {
     super('body')
 
-    this.cookies = new Cookies()
     this.messageManager = new MessageManager()
-    this.overlayMode = new OverlayMode()
-    this.playerModeManager = new PlayerModeManager()
+    this.overlayModeManager = new OverlayModeManager(this.htmlElement)
     this.storage = new Storage()
 
     this.chatSelector = new ChatSelector()
-    this.chatAppFrameSelector = new ChatAppFrameSelector()
     this.fullscreenButtonSelector = new FullscreenButtonSelector()
     this.sizeButtonSelector = new SizeButtonSelector()
 
@@ -123,7 +90,7 @@ export class App extends Selector {
    * @memberof App
    */
   public dispose(): void {
-    this.element.classList.toggle(this.overlayMode.class, false)
+    this.overlayModeManager.setMode(OverlayMode.DISABLED)
   }
 
   /**
@@ -134,7 +101,6 @@ export class App extends Selector {
    */
   private initialize(): void {
     this.initializeOverlayMode()
-    this.initializePlayerMode()
     this.initializeSizeListener()
     this.initializeFullscreenListener()
     this.initializeKeyListener()
@@ -159,27 +125,13 @@ export class App extends Selector {
   }
 
   /**
-   * initialize player mode
-   *
-   * @private
-   * @memberof App
-   */
-  private initializePlayerMode(): void {
-    if (this.cookies.isWide) {
-      this.chatSelector.setPlayerMode(PlayerMode.THEATER)
-    } else {
-      this.chatSelector.setPlayerMode(PlayerMode.DEFAULT)
-    }
-  }
-
-  /**
    * initialize size listener
    *
    * @private
    * @memberof App
    */
   private initializeSizeListener(): void {
-    this.sizeButtonSelector.setOnclick(this.sizeChangeListener)
+    this.sizeButtonSelector.setOnclick(this.chatSelector.sizeChangeListener)
   }
 
   /**
@@ -189,8 +141,8 @@ export class App extends Selector {
    * @memberof App
    */
   private initializeFullscreenListener(): void {
-    this.fullscreenButtonSelector.setOnclickListener(this.fullscreenChangeListener)
-    this.chatSelector.setPlayerOndbclickListener(this.fullscreenChangeListener)
+    this.fullscreenButtonSelector.setOnclickListener(this.chatSelector.fullscreenChangeListener)
+    this.chatSelector.setPlayerOndbclickListener(this.chatSelector.fullscreenChangeListener)
   }
 
   /**
@@ -201,26 +153,30 @@ export class App extends Selector {
    */
   private initializeKeyListener(): void {
     window.addEventListener('keydown', (e: KeyboardEvent) => {
-      switch (e.keyCode) {
-        // a
-        case 65:
-          this.chatSelector.toggleAreaMode()
-          break
-        // f
-        case 70:
-          this.fullscreenChangeListener()
-          break
-        // o
-        case 79:
-          this.toggleOverlayMode()
-          break
-        // t
-        case 84:
-          this.sizeChangeListener()
-          break
-        default:
-          break
+      const ignoreTagList = ['textarea', 'input']
+
+      if (e.target == null) {
+        return
       }
+
+      let element: Element|null = null
+      try {
+        element = e.target as HTMLElement
+      } catch (e) {
+        console.debug(e)
+        return
+      }
+
+      if (!e.altKey) {
+        if (ignoreTagList.includes(element.tagName.toLowerCase())) {
+          return
+        }
+        if (ignoreTagList.includes(element.id.toLowerCase())) {
+          return
+        }
+      }
+
+      this.keydown(e.keyCode)
     })
   }
 
@@ -237,6 +193,10 @@ export class App extends Selector {
           const isOverlayMode: boolean = message.data['isOverlayMode']
           this.changeOverlayMode(isOverlayMode)
           break
+        case MessageType.KEY_DOWN:
+          const keyCode: number = message.data['keyCode']
+          this.keydown(keyCode)
+          break
         default:
           break
       }
@@ -252,8 +212,9 @@ export class App extends Selector {
    * @memberof App
    */
   private changeOverlayMode(isOverlayMode: boolean): void {
-    this.element.classList.toggle(this.overlayMode.class, isOverlayMode)
-    this.chatAppFrameSelector.changeOverlayMode(this.overlayMode.class, isOverlayMode)
+    const overlayMode = isOverlayMode ? OverlayMode.ENABLED : OverlayMode.DISABLED
+
+    this.overlayModeManager.setMode(overlayMode)
     this.chatSelector.setHeight()
     this.storage.set('overlay-mode', isOverlayMode)
 
@@ -273,50 +234,49 @@ export class App extends Selector {
    * @memberof App
    */
   private toggleOverlayMode(): void {
-    const isOverlayMode = this.element.classList.contains(this.overlayMode.class)
-
-    this.changeOverlayMode(!isOverlayMode)
-  }
-
-  /**
-   * change player size listener
-   *
-   * @readonly
-   * @private
-   * @returns {() => void}
-   * @memberof App
-   */
-  private get sizeChangeListener(): () => void {
-    return () => {
-      if (this.playerModeManager.isDefault) {
-        this.chatSelector.setPlayerMode(PlayerMode.THEATER)
-      } else {
-        this.chatSelector.setPlayerMode(PlayerMode.DEFAULT)
+    const message: Message = {
+      type: MessageType.SET_OVERLAY_MODE,
+      data: {
+        isOverlayMode: !this.overlayModeManager.isEnabled
       }
     }
+    this.messageManager.send(message)
   }
 
   /**
-   * change fullscreen mode listener
+   * keydown processor
    *
-   * @readonly
    * @private
-   * @returns {() => void}
    * @memberof App
    */
-  private get fullscreenChangeListener(): () => void {
-    return () => {
-      if (this.playerModeManager.isFullscreen) {
-        this.cookies.update()
-        console.log(this.cookies.isWide)
-        if (this.cookies.isWide) {
-          this.chatSelector.setPlayerMode(PlayerMode.THEATER)
-        } else {
-          this.chatSelector.setPlayerMode(PlayerMode.DEFAULT)
+  private keydown(keyCode: number): void {
+    switch (keyCode) {
+      // a
+      case 65:
+        this.chatSelector.toggleAreaMode()
+        break
+      // c
+      case 67:
+        const message: Message = {
+          type: MessageType.TOGGLE_CHAT_INPUT_ENABLED,
+          data: null
         }
-      } else {
-        this.chatSelector.setPlayerMode(PlayerMode.FULLSCREEN)
-      }
+        this.messageManager.send(message)
+        break
+      // f
+      case 70:
+        this.chatSelector.fullscreenChangeListener()
+        break
+      // o
+      case 79:
+        this.toggleOverlayMode()
+        break
+      // t
+      case 84:
+        this.chatSelector.sizeChangeListener()
+        break
+      default:
+        break
     }
   }
 

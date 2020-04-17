@@ -1,38 +1,92 @@
 /**
- * manage OverlayMode class
+ * manage OverlayModeManager class
  *
  * @export
- * @class OverlayMode
+ * @class OverlayModeManager
  */
-export class OverlayMode {
+export class OverlayModeManager {
   /**
-   * class name attaches when overlay mode enabled
+   * target element
    *
    * @private
-   * @type {string}
-   * @memberof OverlayMode
+   * @type {HTMLElement}
+   * @memberof PlayerModeManager
    */
-  private overlayClass: string = 'overlay-mode'
+  private element: HTMLElement
 
   /**
-   * get chat window is overlay mode
+   * Creates an instance of PlayerModeManager.
+   *
+   * @param {HTMLElement} element
+   * @memberof PlayerModeManager
+   */
+  public constructor(element: HTMLElement) {
+    this.element = element
+  }
+
+  /**
+   * set overlay mode
+   *
+   * @memberof OverlayModeManager
+   */
+  public setMode(overlayMode: OverlayMode): void {
+    switch (overlayMode) {
+      case OverlayMode.ENABLED:
+        this.element.classList.add(OverlayModeClass.ENABLED)
+        this.element.classList.remove(OverlayModeClass.DISABLED)
+        break
+      case OverlayMode.DISABLED:
+        this.element.classList.remove(OverlayModeClass.ENABLED)
+        this.element.classList.add(OverlayModeClass.DISABLED)
+        break
+      default:
+        break
+    }
+  }
+
+  /**
+   * toggle overlay mode
+   *
+   * @memberof OverlayModeManager
+   */
+  public toggleMode(): void {
+    if (this.isEnabled) {
+      this.setMode(OverlayMode.DISABLED)
+    } else {
+      this.setMode(OverlayMode.ENABLED)
+    }
+  }
+
+  /**
+   * get is overlay mode
    *
    * @readonly
    * @type {boolean}
-   * @memberof OverlayMode
+   * @memberof OverlayModeManager
    */
-  public get isOverlay(): boolean {
-    return document.body.classList.contains(this.overlayClass)
+  public get isEnabled(): boolean {
+    return this.element.classList.contains(OverlayModeClass.ENABLED)
   }
+}
 
-  /**
-   * get overlay class
-   *
-   * @readonly
-   * @type {string}
-   * @memberof OverlayMode
-   */
-  public get class(): string {
-    return this.overlayClass
-  }
+/**
+ * overlay mode enum
+ *
+ * @export
+ * @enum OverlayMode
+ */
+export const enum OverlayMode {
+  ENABLED,
+  DISABLED,
+}
+
+/**
+ * overlay mode class enum
+ *
+ * @export
+ * @enum OverlayModeClass
+ */
+export const enum OverlayModeClass {
+  ENABLED = 'overlay-mode',
+  DISABLED = 'default-mode',
 }
