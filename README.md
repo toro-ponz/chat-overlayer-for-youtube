@@ -19,6 +19,8 @@ Supported on live, live replay and premiere release chat.
 * [c] ... toggle chat input, show or hide.
 * [o] ... toggle overlay mode, on or off.
 
+Key event are blocked when your foucus on textarea or input, but you can fire event by press with ALT key.
+
 ## Development & Debug
 
 1. Clone this repository.
