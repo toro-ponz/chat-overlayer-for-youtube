@@ -64,12 +64,7 @@ body.overlay-mode {
 
       // chat collapsed
       &[collapsed] {
-
-        // chat app iframe
-        iframe#chatframe {
-          height: 0 !important;
-          min-height: 0 !important;
-        }
+        height: var(--yt-paper-button-height, auto) !important;
       }
 
       // chat show/hide button
@@ -96,6 +91,20 @@ body.overlay-mode {
     .ytp-offline-slate-bar {
       left: auto;
       right: 12px;
+    }
+  }
+}
+
+// default
+body.default-mode {
+  // parent
+  #content {
+    // chat window
+    #chat {
+      // chat collapsed
+      &[collapsed] {
+        height: var(--yt-paper-button-height, auto) !important;
+      }
     }
   }
 }
