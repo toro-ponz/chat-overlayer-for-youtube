@@ -44,8 +44,6 @@ export class PlayerModeManager {
         this.element.classList.remove(PlayerModeClass.FULLSCREEN)
         break
       case PlayerMode.FULLSCREEN:
-        this.element.classList.remove(PlayerModeClass.DEFAULT)
-        this.element.classList.remove(PlayerModeClass.THEATER)
         this.element.classList.add(PlayerModeClass.FULLSCREEN)
         break
       default:

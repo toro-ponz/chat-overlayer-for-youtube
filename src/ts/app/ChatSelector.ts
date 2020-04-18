@@ -55,7 +55,6 @@ private playerModeManager: PlayerModeManager
     super('ytd-live-chat-frame')
 
     this.cookies = new Cookies()
-
     const playerMode = this.cookies.isWide ? PlayerMode.THEATER : PlayerMode.DEFAULT
 
     this.areaModeManager = new AreaModeManager(this.htmlElement)
@@ -132,7 +131,23 @@ private playerModeManager: PlayerModeManager
   }
 
   /**
-   * set player ondbclick event function
+   * set fullscreen mode
+   *
+   * @param {boolean} isFullscreen
+   * @memberof App
+   */
+  public setIsFullscreen(isFullscreen: boolean): void {
+    if (isFullscreen) {
+      this.setPlayerMode(PlayerMode.FULLSCREEN)
+    } else if (this.playerModeManager.isTheater) {
+      this.setPlayerMode(PlayerMode.THEATER)
+    } else {
+      this.setPlayerMode(PlayerMode.DEFAULT)
+    }
+  }
+
+  /**
+   * set player ondbclick listener
    *
    * @param {() => void} listener
    * @memberof ChatSelector
@@ -154,28 +169,6 @@ private playerModeManager: PlayerModeManager
         this.setPlayerMode(PlayerMode.THEATER)
       } else {
         this.setPlayerMode(PlayerMode.DEFAULT)
-      }
-    }
-  }
-
-  /**
-   * change fullscreen mode listener
-   *
-   * @readonly
-   * @returns {() => void}
-   * @memberof App
-   */
-  public get fullscreenChangeListener(): () => void {
-    return () => {
-      if (this.playerModeManager.isFullscreen) {
-        this.cookies.update()
-        if (this.cookies.isWide) {
-          this.setPlayerMode(PlayerMode.THEATER)
-        } else {
-          this.setPlayerMode(PlayerMode.DEFAULT)
-        }
-      } else {
-        this.setPlayerMode(PlayerMode.FULLSCREEN)
       }
     }
   }
