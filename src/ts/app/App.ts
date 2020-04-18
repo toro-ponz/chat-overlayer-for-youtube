@@ -141,8 +141,10 @@ export class App extends Selector {
    * @memberof App
    */
   private initializeFullscreenListener(): void {
-    this.fullscreenButtonSelector.setOnclickListener(this.chatSelector.fullscreenChangeListener)
-    this.chatSelector.setPlayerOndbclickListener(this.chatSelector.fullscreenChangeListener)
+    document.addEventListener('fullscreenchange', (_) => {
+      const isFullscreen = !(document.fullscreenElement === null)
+      this.chatSelector.setIsFullscreen(isFullscreen)
+    });
   }
 
   /**
@@ -262,10 +264,6 @@ export class App extends Selector {
           data: null
         }
         this.messageManager.send(message)
-        break
-      // f
-      case 70:
-        this.chatSelector.fullscreenChangeListener()
         break
       // o
       case 79:
