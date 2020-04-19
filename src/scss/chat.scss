@@ -132,6 +132,15 @@ body.overlay-mode {
       }
     }
 
+    // chat item
+    .yt-live-chat-item-list-renderer {
+
+      // timestamp
+      #timestamp {
+        color: lightsteelblue;
+      }
+    }
+
     // chat input area
     yt-live-chat-message-input-renderer {
       background: transparent;
