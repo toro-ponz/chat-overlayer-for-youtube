@@ -62,6 +62,24 @@ body.overlay-mode {
         }
       }
 
+      // overlay on theater or fullscreen player size
+      &.player-theater,
+      &.player-fullscreen {
+        top: 0;
+
+        // overlay on left
+        &.overlay-left {
+          left: 0;
+          right: auto;
+        }
+
+        // overlay on right
+        &.overlay-right {
+          left: auto;
+          right: 0;
+        }
+      }
+
       // chat collapsed
       &[collapsed] {
         height: var(--yt-paper-button-height, auto) !important;
