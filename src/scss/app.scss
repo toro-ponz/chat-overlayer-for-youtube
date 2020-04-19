@@ -10,7 +10,6 @@ body.overlay-mode {
       background: rgba(0, 0, 0, 0.25);
       color: white;
       display: flex;
-      flex-direction: column-reverse;
       position: absolute;
       z-index: 21;
       top: 0;
@@ -72,6 +71,11 @@ body.overlay-mode {
       // chat collapsed
       &[collapsed] {
         height: auto !important;
+      }
+
+      // chat frame
+      iframe {
+        order: 1;
       }
 
       // chat show/hide button

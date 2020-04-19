@@ -20,6 +20,11 @@ body.overlay-mode {
         background: transparent;
         padding: 0 8px;
       }
+
+      // toast
+      yt-live-chat-toast-renderer {
+        padding: 0 16px;
+      }
     }
 
     // superchat
@@ -115,6 +120,7 @@ body.overlay-mode {
       color: lightgray;
       padding: 7px;
       border-top: 1px solid lightgray;
+      overflow: hidden;
 
       // disabled input area
       &.disabled-input-renderer {
@@ -162,7 +168,7 @@ body.overlay-mode {
         }
       }
 
-      // pickeers
+      // picker buttons
       #picker-buttons {
 
         // emoticon
@@ -174,12 +180,79 @@ body.overlay-mode {
           }
         }
 
-        // superchat button
+        // support button
         #product-picker {
 
-          // superchat icon
+          // support icon
           yt-icon {
             color: #c4302b;
+          }
+        }
+
+        // tooltip
+        paper-tooltip {
+          left: 0px !important;
+          right: auto !important;
+          top: -6px !important;
+          bottom: auto !important;
+
+          // tooltip text
+          #tooltip {
+            font-size: 11px;
+          }
+        }
+      }
+
+      // pickers
+      #pickers {
+        background: white;
+        border-radius: 10px;
+        margin: 0;
+
+        // emoticon picker
+        yt-emoji-picker-renderer {
+          margin: 16px 0 0 0;
+        }
+
+        // support picker
+        yt-live-chat-product-picker-renderer {
+
+          // support channel description
+          yt-formatted-string {
+            color: black;
+          }
+
+          // action buttons
+          yt-live-chat-product-button-renderer {
+
+            // button content
+            paper-item {
+
+              // button icon
+              yt-icon {
+                // color: #c4302b;
+                padding-right: 10px;
+              }
+
+              // button text
+              #text {
+                color: black;
+                max-width: 192px;
+
+                // button subtext
+                #subtext {
+
+                  // button formatted subtext
+                  yt-formatted-string {
+                    max-width: 100% !important;
+                    overflow-wrap: break-word;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                    word-break: break-all;
+                  }
+                }
+              }
+            }
           }
         }
       }
