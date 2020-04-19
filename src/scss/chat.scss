@@ -22,8 +22,17 @@ body.overlay-mode {
       }
 
       // toast
-      yt-live-chat-toast-renderer {
-        padding: 0 16px;
+      #toast-container {
+        height: 0;;
+
+        // toast renderer
+        yt-live-chat-toast-renderer {
+
+          // close button
+          yt-button-renderer {
+            display: none;
+          }
+        }
       }
     }
 
