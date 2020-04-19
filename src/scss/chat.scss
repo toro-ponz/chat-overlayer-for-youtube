@@ -99,6 +99,15 @@ body.overlay-mode {
       }
     }
 
+    // error message
+    yt-live-chat-text-message-renderer {
+
+      // message
+      #message {
+        color: white;
+      }
+    }
+
     // engagement
     yt-live-chat-viewer-engagement-message-renderer {
 
