@@ -39,14 +39,14 @@ body.overlay-mode {
 
         // overlay on left
         &.overlay-left {
-          left: unquote('max(calc(var(--ytd-margin-6x)), calc((100vw - 1280px - var(--ytd-watch-flexy-sidebar-width)) / 2 - (var(--ytd-margin-6x))))');
+          left: unquote('max(calc(var(--ytd-margin-6x)),calc((100% - 1280px - var(--ytd-watch-flexy-sidebar-width) - var(--ytd-margin-6x)) / 2))');
           right: auto;
         }
 
         // overlay on right
         &.overlay-right {
           left: auto;
-          right: unquote('max(calc(var(--ytd-watch-flexy-sidebar-width) + (2 * var(--ytd-margin-6x))), calc((100vw - 1280px - var(--ytd-watch-flexy-sidebar-width)) / 2 + (var(--ytd-watch-flexy-sidebar-width))))');
+          right: unquote('max(calc(var(--ytd-watch-flexy-sidebar-width) + (2 * var(--ytd-margin-6x))), calc((100% - 1280px - var(--ytd-watch-flexy-sidebar-width) - var(--ytd-margin-6x)) / 2 + (var(--ytd-watch-flexy-sidebar-width) + var(--ytd-margin-6x))))');
         }
       }
 
