@@ -87,6 +87,15 @@ export class Chat extends Selector {
 
     window.addEventListener('keydown', (e: KeyboardEvent) => {
       const ignoreTagList = ['textarea', 'input']
+      const fireKeyList = [
+        65, // a
+        67, // c
+        79, // o
+      ]
+
+      if (!fireKeyList.includes(e.keyCode)) {
+        return
+      }
 
       if (e.target == null) {
         return
