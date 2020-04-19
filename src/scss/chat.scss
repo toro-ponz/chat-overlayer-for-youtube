@@ -184,6 +184,12 @@ body.overlay-mode {
         }
       }
     }
+
+    // chat area message
+    yt-live-chat-message-renderer {
+      background: transparent;
+      color: white;
+    }
   }
 
   // hack Firefox
