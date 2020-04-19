@@ -71,7 +71,7 @@ body.overlay-mode {
 
       // chat collapsed
       &[collapsed] {
-        height: var(--yt-paper-button-height, auto) !important;
+        height: auto !important;
       }
 
       // chat show/hide button
@@ -90,6 +90,15 @@ body.overlay-mode {
           #text {
             color: white !important;
           }
+        }
+      }
+
+      // chat off message area
+      ytd-message-renderer {
+
+        // chat off message
+        yt-formatted-string {
+          color: gray;
         }
       }
     }
