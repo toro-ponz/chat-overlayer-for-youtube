@@ -79,7 +79,7 @@ export class Background extends Selector {
       }
     })
 
-    chrome.pageAction.onClicked.addListener((tab: chrome.tabs.Tab) => {
+    chrome.action.onClicked.addListener((tab: chrome.tabs.Tab) => {
       this.page.getIsOverlayMode(tab, (isOverlayMode: boolean) => {
         this.sendMessage(!isOverlayMode)
       })
