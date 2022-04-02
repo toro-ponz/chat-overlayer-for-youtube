@@ -117,9 +117,9 @@ private playerModeManager: PlayerModeManager
     setTimeout(() => {
       let chatHeight = this.playerSelector.height
       if (this.playerModeManager.isFullscreen) {
-        chatHeight -= 60
+        chatHeight -= 65
       } else {
-        chatHeight -= 45
+        chatHeight -= 55
       }
 
       const style = `

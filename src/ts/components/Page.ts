@@ -17,7 +17,7 @@ export class Page {
       return
     }
 
-    chrome.pageAction.getTitle({ tabId: tab.id }, (title: string) => {
+    chrome.action.getTitle({ tabId: tab.id }, (title: string) => {
       callback(title == PageTitle.ENABLED)
     })
   }
@@ -50,7 +50,7 @@ export class Page {
       return
     }
 
-    chrome.pageAction.setIcon({
+    chrome.action.setIcon({
       path : isOverlayMode ? PageIcon.ENABLED : PageIcon.DISABLED,
       tabId: tab.id
     }, callback)
@@ -70,7 +70,7 @@ export class Page {
       return
     }
 
-    chrome.pageAction.setTitle({
+    chrome.action.setTitle({
       title: isOverlayMode ? PageTitle.ENABLED : PageTitle.DISABLED,
       tabId: tab.id
     }, callback)

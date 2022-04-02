@@ -189,7 +189,7 @@ export class App extends Selector {
    * @memberof App
    */
   private initializeMessageListener(): void {
-    const messageListener = (message: Message) => {
+    const messageListener = (message: Message, _sender: chrome.runtime.MessageSender, sendResponse: (response?: any) => void) => {
       switch (message.type) {
         case MessageType.SET_OVERLAY_MODE:
           const isOverlayMode: boolean = message.data['isOverlayMode']
@@ -202,6 +202,8 @@ export class App extends Selector {
         default:
           break
       }
+
+      sendResponse()
     }
     this.messageManager.setListener(messageListener)
   }
