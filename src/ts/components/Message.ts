@@ -10,7 +10,7 @@ export class MessageManager {
    * @param {(Message) => void} listener
    * @memberof MessageManager
    */
-  public setListener(listener: (message: Message) => void): void {
+  public setListener(listener: (message: Message, sender: chrome.runtime.MessageSender, sendResponse: (response?: any) => void) => void): void {
     chrome.runtime.onMessage.addListener(listener)
   }
 

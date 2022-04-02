@@ -135,7 +135,7 @@ export class Chat extends Selector {
    * @memberof Chat
    */
   private initializeMessageListener(): void {
-    this.messageManager.setListener((message: Message) => {
+    this.messageManager.setListener((message: Message, _sender: chrome.runtime.MessageSender, sendResponse: (response?: any) => void) => {
       switch (message.type) {
         case MessageType.SET_OVERLAY_MODE:
           const isOverlayMode: boolean = message.data['isOverlayMode']
@@ -147,6 +147,8 @@ export class Chat extends Selector {
         default:
           break
       }
+
+      sendResponse()
     })
   }
 

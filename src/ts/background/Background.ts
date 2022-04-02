@@ -58,7 +58,7 @@ export class Background extends Selector {
    * @private
    */
   private initialize(): void {
-    this.messageManager.setListener((message: Message) => {
+    this.messageManager.setListener((message: Message, _sender: chrome.runtime.MessageSender, sendResponse: (response?: any) => void) => {
       switch (message.type) {
         case MessageType.UPDATE_ICON:
           const isOverlayMode: boolean = message.data['isOverlayMode']
@@ -77,6 +77,8 @@ export class Background extends Selector {
         default:
           break
       }
+
+      sendResponse()
     })
 
     chrome.action.onClicked.addListener((tab: chrome.tabs.Tab) => {
