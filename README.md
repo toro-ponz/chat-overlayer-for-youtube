@@ -9,9 +9,11 @@ Supported on live, live replay and premiere release chat.
 
 ## Usage
 
-1. Install from [extensions store](https://chrome.google.com/webstore/detail/youtube-live-overlayer/hpdlnlpkaigpokddgcfeelaccdlalonh).
+1. Install from ~~[extensions store](https://chrome.google.com/webstore/detail/youtube-live-overlayer/hpdlnlpkaigpokddgcfeelaccdlalonh) or~~ [release page](https://github.com/toro-ponz/chat-overlayer-for-youtube/releases) by downloading zip. (※)
 2. View YouTube™.
 3. Change player mode to theater.
+
+※ Rejected from Google Web Store, so only available by manual install now.
 
 ## Keys
 
