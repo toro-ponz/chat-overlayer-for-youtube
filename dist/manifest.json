@@ -3,7 +3,7 @@
   "name": "Chat Overlayer for YouTube™",
   "description": "Chat overlayer extension for YouTube™ powered by Web Extensions.",
   "author": "とろゝ",
-  "version": "0.11.0.0",
+  "version": "0.11.1.0",
   "icons": {
     "16": "icons/16.png",
     "19": "icons/19.png",
